@@ -1,3 +1,5 @@
+![RAA Logo](/addons/common/pics/RAA_logo.png)
+
 Riksu's Arma Additions is just that: Bunch of Misc Additions to Arma.
 
 Whenever I encounter a feature that would make sense but is missing from Arma, and no other mod has done it, there is only one thing to do: DIY!
