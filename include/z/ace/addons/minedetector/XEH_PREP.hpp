@@ -1,0 +1,13 @@
+PREP(activateDetector);
+PREP(canActivateDetector);
+PREP(canConnectHeadphones);
+PREP(canDeactivateDetector);
+PREP(canDisconnectHeadphones);
+PREP(connectHeadphones);
+PREP(deactivateDetector);
+PREP(detectorLoop);
+PREP(getDetectedObject);
+PREP(getDetectorConfig);
+PREP(hasDetector);
+PREP(isDetectorEnabled);
+PREP(playDetectorSound);

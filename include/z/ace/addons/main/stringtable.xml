@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="ACE">
+    <Package name="Main">
+        <Key ID="STR_ACE_Main_Category_Logistics">
+            <English>ACE Logistics</English>
+            <Czech>ACE Logistika</Czech>
+            <French>ACE Logistique</French>
+            <Spanish>ACE Logística</Spanish>
+            <Italian>ACE Logistica</Italian>
+            <Polish>ACE Logistyka</Polish>
+            <Portuguese>Logísticas ACE</Portuguese>
+            <Russian>ACE Логистика</Russian>
+            <German>ACE Logistik</German>
+            <Korean>ACE 병참</Korean>
+            <Japanese>ACE ロジスティクス</Japanese>
+            <Chinese>ACE 後勤</Chinese>
+            <Chinesesimp>ACE 后勤</Chinesesimp>
+            <Turkish>ACE Lojistik</Turkish>
+            <Ukrainian>ACE: Логістика</Ukrainian>
+        </Key>
+        <Key ID="STR_ACE_Main_URL">
+            <English>https://ace3.acemod.org/</English>
+            <Czech>https://ace3.acemod.org/</Czech>
+            <French>https://ace3.acemod.org/</French>
+            <Spanish>https://ace3.acemod.org/</Spanish>
+            <Italian>https://ace3.acemod.org/</Italian>
+            <Polish>https://ace3.acemod.org/</Polish>
+            <Portuguese>https://ace3.acemod.org/</Portuguese>
+            <Russian>https://ace3.acemod.org/</Russian>
+            <German>https://ace3.acemod.org/</German>
+            <Korean>https://ace3.acemod.org/</Korean>
+            <Japanese>https://ace3.acemod.org/</Japanese>
+            <Chinese>https://ace3.acemod.org/</Chinese>
+            <Chinesesimp>https://ace3.acemod.org/</Chinesesimp>
+            <Turkish>https://ace3.acemod.org/</Turkish>
+            <Hungarian>https://ace3.acemod.org/</Hungarian>
+            <Ukrainian>https://ace3.acemod.org/</Ukrainian>
+        </Key>
+    </Package>
+</Project>

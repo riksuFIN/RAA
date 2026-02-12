@@ -1,0 +1,76 @@
+    class CBA_556x45_1rnd {};       // 1 loose round of 5.56x45mm
+    class CBA_556x45_2rnds {};      // 2 loose rounds of 5.56x45mm
+    class CBA_556x45_3rnds {};      // 3 loose rounds of 5.56x45mm
+    class CBA_556x45_4rnds {};      // 4 loose rounds of 5.56x45mm
+    class CBA_556x45_5rnds {};      // 5 loose rounds of 5.56x45mm
+    class CBA_556x45_6rnds {};      // 6 loose rounds of 5.56x45mm
+    class CBA_556x45_7rnds {};      // 7 loose rounds of 5.56x45mm
+    class CBA_556x45_8rnds {};      // 8 loose rounds of 5.56x45mm
+    class CBA_556x45_9rnds {};      // 9 loose rounds of 5.56x45mm
+    class CBA_556x45_10rnds {};     // 10 loose rounds of 5.56x45mm
+
+    class CBA_556x45_AK {};             // AK mags for 5.56 AK type rifles, AK-101, AK-102, etc.
+    class CBA_556x45_RPK {};            // 45rnd RPK mags for 5.56 RPK-201
+    class CBA_556x45_FAMAS {};          // FAMAS F1
+    class CBA_556x45_GALIL {};          // IMI Galil
+    class CBA_556x45_G36 {};            // H&K G36
+    class CBA_556x45_HK33 {};           // H&K 33/53/93
+    class CBA_556x45_M21 {};            // Zastava M21
+
+    class CBA_556x45_MINIMI {
+        BI_boxes[] = {
+            "200Rnd_556x45_Box_F",
+            "200Rnd_556x45_Box_Red_F",
+            "200Rnd_556x45_Box_Tracer_F",
+            "200Rnd_556x45_Box_Tracer_Red_F"
+        };
+    };
+
+    class CBA_556x45_TYPE97 {};         // QBZ-97 Stick Mags
+    class CBA_556x45_TYPE97_XL {};      // QBB-97 LSW Drums
+    class CBA_556x45_SCAR_EGLM {        // SCAR-L with EGLM/FN40GL/Mk 13 Mod 0 grenage launcher (This extends the length of the magwell and prevents mags that are too short or wide from being used)
+        BI_mags[] = {
+            "30Rnd_556x45_Stanag",
+            "30Rnd_556x45_Stanag_green",
+            "30Rnd_556x45_Stanag_red",
+            "30Rnd_556x45_Stanag_Tracer_Red",
+            "30Rnd_556x45_Stanag_Tracer_Green",
+            "30Rnd_556x45_Stanag_Tracer_Yellow",
+            "30Rnd_556x45_Stanag_Sand",
+            "30Rnd_556x45_Stanag_Sand_green",
+            "30Rnd_556x45_Stanag_Sand_red",
+            "30Rnd_556x45_Stanag_Sand_Tracer_Red",
+            "30Rnd_556x45_Stanag_Sand_Tracer_Green",
+            "30Rnd_556x45_Stanag_Sand_Tracer_Yellow"
+        };
+    };
+    class CBA_556x45_SG550 {};
+
+    class CBA_556x45_STANAG {           // STANAG mags, standard length, including small drums
+        BI_mags[] = {
+            "30Rnd_556x45_Stanag",
+            "30Rnd_556x45_Stanag_green",
+            "30Rnd_556x45_Stanag_red",
+            "30Rnd_556x45_Stanag_Tracer_Red",
+            "30Rnd_556x45_Stanag_Tracer_Green",
+            "30Rnd_556x45_Stanag_Tracer_Yellow",
+            "30Rnd_556x45_Stanag_Sand",
+            "30Rnd_556x45_Stanag_Sand_green",
+            "30Rnd_556x45_Stanag_Sand_red",
+            "30Rnd_556x45_Stanag_Sand_Tracer_Red",
+            "30Rnd_556x45_Stanag_Sand_Tracer_Green",
+            "30Rnd_556x45_Stanag_Sand_Tracer_Yellow"
+        };
+    };
+
+    class CBA_556x45_STANAG_L {};       // STANAG mags, long stick or coffin (40/60 rounds, Magpul PMAG 40, Surefire MAG5-60)
+    class CBA_556x45_STANAG_XL {};      // STANAG mags, extra long stick or coffin (80/100 rounds, Surefire MAG5-100)
+    class CBA_556x45_STANAG_2D {};      // STANAG mags, twin drums (100rnd Beta C-MAG)
+    class CBA_556x45_STANAG_2D_XL {     // STANAG mags, extra large twin-drums (150rnd Armatac SAW-MAG)
+        BI_mags[] = {
+            "150Rnd_556x45_Drum_Mag_F",
+            "150Rnd_556x45_Drum_Mag_Tracer_F"
+        };
+    };
+
+    class CBA_556x45_STEYR {};          // Steyr AUG

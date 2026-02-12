@@ -1,0 +1,13 @@
+PREP(cookOffBoxLocal);
+PREP(cookOffBoxServer);
+PREP(cookOffLocal);
+PREP(cookOffServer);
+PREP(detonateAmmunitionServer);
+PREP(detonateAmmunitionServerLoop);
+PREP(disableCookoff);
+PREP(engineFireLocal);
+PREP(engineFireServer);
+PREP(getVehicleAmmo);
+PREP(handleDamageBox);
+PREP(isMagazineFlare);
+PREP(smoke);

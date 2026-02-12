@@ -1,0 +1,1 @@
+#include "\r\RAA\addons\localMarkers\script_component.hpp"

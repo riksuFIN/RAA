@@ -1,0 +1,7 @@
+name = "Riksu's Arma Additions"
+prefix = "RAA"
+mainprefix = "r"
+author = "riksuFIN"
+
+[version]
+git_hash = 0

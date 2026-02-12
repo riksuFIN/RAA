@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="ACE">
+    <Package name="Medical_Engine">
+        <Key ID="STR_ACE_Medical_Engine_EnableVehicleCrashes_Description">
+            <English>Controls whether crew receives damage from vehicle collisions.</English>
+            <French>Définit si les passagers à bord des véhicules peuvent être blessés en cas d'accident.</French>
+            <Spanish>Controla si la tripulación recibe daño debido a colisiones en vehículo.</Spanish>
+            <Italian>Determina se i passeggeri di un veicolo subiranno danni da schianti o incidenti.</Italian>
+            <Polish>Kontroluje czy załoga pojazdu otrzyma obrażenia podczas kolizji pojazdu.</Polish>
+            <Portuguese>Controla se a tripulação recebe dano de colisões de veículos.</Portuguese>
+            <Russian>Контролирует, получает ли экипаж урон от столкновения транспортного средства.</Russian>
+            <German>Kontrolliert, ob Besatzung eines Fahrzeugs Schaden durch Unfälle erleiden soll</German>
+            <Korean>차량 충돌로 인해 탑승인원들이 피해를 받을 지 결정합니다.</Korean>
+            <Japanese>車両が衝突をすると乗員がダメージを受けるかどうかを制御します。</Japanese>
+            <Chinesesimp>控制乘员是否受到车辆碰撞的伤害。</Chinesesimp>
+            <Ukrainian>Контролює, чи отримує екіпаж шкоду від зіткнення транспортного засобу.</Ukrainian>
+        </Key>
+        <Key ID="STR_ACE_Medical_Engine_EnableVehicleCrashes_DisplayName">
+            <English>Enable Vehicle Crash Damage</English>
+            <French>Blessures de collision (véhicules)</French>
+            <Spanish>Activar daño por accidente de vehículo</Spanish>
+            <Italian>Abilita danni da schianti del veicolo</Italian>
+            <Polish>Włącz obrażenia od kolizji pojazdu</Polish>
+            <Portuguese>Habilitar Dano por Colisão de Veículo</Portuguese>
+            <Russian>Вкл. урон при аварии в транспорте</Russian>
+            <German>Aktiviere Verletzungen durch Fahrzeugunfälle</German>
+            <Korean>차량 충돌 피해 활성화</Korean>
+            <Japanese>車両衝突ダメージを有効化</Japanese>
+            <Chinesesimp>启用车辆碰撞损坏</Chinesesimp>
+            <Ukrainian>Увім. шкоди при аварії в транспорті</Ukrainian>
+        </Key>
+    </Package>
+</Project>

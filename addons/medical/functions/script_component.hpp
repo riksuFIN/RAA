@@ -1,0 +1,1 @@
+#include "\r\RAA\addons\medical\script_component.hpp"

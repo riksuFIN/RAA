@@ -1,0 +1,706 @@
+
+================ KNOWN BUGS ===================================
+- BeltItems: Unable to drop on ground
+- BeltItems: Drinking half bottle deletes entire bottle
+- Bottles float in air after DC
+- ACE Arsenal Overview & Item Description will not hide with rest of interface
+- BeltSlot: After client disconnects from MP server bottles their bottles are removed, even if their body remains to be controlled by AI.
+
+
+
+
+
+================ TO DO ===================================
+- BeltItems: Check input array filter
+- BeltItems: Add ACE Interact option to take item from other player's belt
+- Convert FieldRationWarnings.pbo
+- Rewrite fieldRation_Warnings
+- Backpack:
+	- Add option to throw backpack (over wall)
+	- Add (modern) option for putting packback on chest (with proper weight)
+
+- CBA error setting:
+	["text", true, false] call ace_common_fnc_parseList
+	https://github.com/acemod/ACE3/blob/master/addons/common/functions/fnc_parseList.sqf
+
+================ CHANGE NOTES ===================================
+v2.0
+- [ALL] Changed PBO management from Mikero tools to HEMTT
+- [fieldRation_Warnings] Finally updated to new standard. Moved CBA settings from old Motti_Misc to RAA category
+- [misc] CBA Setting for hiding ACE Unjamming was defaulted to "true". For most people this is wrong, since it is only usefull when paired with DZN Extended Jamming mod
+- [misc] Cutting tree now makes it fall in correct direction (away from player)
+- [misc] SpawnAIItems now draws drinkable/ edible items directly from config and spawns them at random. CBA setting for setting spawnable items array removed due to being too error-prone
+- [medical] Fixed AED duplicating when deploying from someone else's inventory through ACE Medical menu
+- [zeus] Added module: Kill Player. Used for force kill player or any other object. No restrictions, unlike Zeus interface.
+- [beltSlot] Fixed unable to drop items from belt to ground if own inventory was full.
+- [beltSlot] Added option to ACE menu to drop item to ground from belt. Also fixed options for right belt affecting left side only.
+- [beltSlot] Fixed bottles left floating after user disconnects from MP server
+- [beltSlot] Added ACE option for others to grab item directly from another player's belt.
+
+
+
+
+
+TO BE TESTED:
+- Hunder-Thirst warnings (entire pbo)
+- Cutting tree falls away from player
+- AI consumeable items spawning correctly to pre-placed & zeus-placed units
+- AED able to be placed on ground from player & from others inventories
+- Zeus module Kill Player works
+- Beltslot: Full functionality. Especially:
+	- Grabbing items from other player's belts
+	- bottles deleting if one player disconnectects
+	- Drinking directly from belt updating beltitem correctly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v1.38.2	3.10.25
+- [ACEA], [medical] Moved all medical items & features from ACEA to their own dedicated pbo "medical" (RAA_medical)
+
+
+v1.38.1	30.8.25
+- [beltSlot] Fixed moving item to belt from external inventory for Zeus' remote-controlled unit
+- [beltSlot] Fixed picking up items to belt from corpses
+- [beltSlot] Fixed item disappearing if dropping item from belt to corpse
+					NOTE: This "fix" is really crappy, will drop item _near_ corpse rather than on it. TODO: Find better solution!
+- [ACEA] Fixed force feeding deleting empty bottle if half-empty was force-drunk
+- [Zeus] Added CBA setting to disable Side Relations marker
+- [beltSlot] Fixed onRespawn behaviour:
+				- If ACE setting "Keep gear on respawn" is disabled beltItems will also not be kept.
+				- If same setting is enabled beltItem's mass is now sustained (it disapear on respawn before)
+
+
+v1.38	11.3.25
+- [Zeus] Module SkipTimeWithHunger: Changed setting "Extended Blackout" to be adjustable slider instead of fixed value
+- [ACEX] Fixed not being able to cancel drinking while moving. Switch to weapon to cancel.
+			Note: Cancelling drinking while moving action will drop bottle in order to draw weapon faster
+- [Zeus] Zeus module "Change Inventory/ Cargo Size" had black icon instead of white
+- [ACEA] Fixed water bottles multiplying in drinkWhileMoving menu
+
+
+v1.37.5
+- [saveLoad] Fixed setting saveTrigger on module Save settings not being read
+
+
+v1.37.4
+- [common] Updated fnc_consumeItem to support for returning both hunger and thirst values for item
+- [ACEA] Force Feed now supports both hunger and thirst. Whichever is greater is treated first.
+- [ACEA] Removed Zeus from required addons since it was no longer required
+
+v1.37.3
+- [beltSlot] Added CBA option for disabling beltSlot functionality
+				Note: This will only hide it, underlaying framework still exists. 
+				You can delete this entire .pbo to disable it entirely.
+
+v1.37.2
+- [ACEA] Fixed Arsenal Description to work in 3Den
+- [ACEA] Arsenal Description's box now scales with text
+- [misc] Improved damageableItems system to now accurately count only appropate hit and damage sources instead of literally every damage source
+
+v1.37.1 Hotfix
+- [Misc] Fixed facePaint_canApply.sqf throwing error when opening ACE interaction menu on remote controlled unit
+- [ACEA] adjusted arsenal_description box
+- [beltSlot] Minor adjustment to help tracing down ghost bottles on belt bug
+
+v1.37
+- [ACEA] TearUniform: Now equipping a different uniform (different classname!) resets tearing times
+- [ACEA] TearUniform: Fixed bug where tearing always tore your own uniform rather than target's
+- [ACEA] Fixed medical actions Check Hunger and Force Drink not be shown if fieldRations is disabled
+- [ACEA] Force Drinking now requires some type of drinkable item in helper's inventory, which will be consumed.
+- [Common, Zeus] Moved fnc_consumeItem to Common since it's now used from several .pbo's
+- [saveLoad] Added Save-Load script in mod form with editor modules for easy configuration.
+	This feature has not been tested extensively, so there may be small hickups. Should work fine though.	
+- [ACEA] Changed ArsenalOverview's medical item sorting to utilize ACE's 'ACE_isMedicalItem' tag for more reliable sorting
+- [beltSlot] Fixed bug where taking item from external inventory would not delete that item from inventory.
+					Also made function stop and throw error if failed to delete item from inventory instead of spawning a duplicate.
+- [ACEA] Added Item Description for Arsenal
+- [misc] Fixed small typo in damagegeableItems
+- [Zeus] AiSkillPresets will no longer tell about undefined skills unless Motti's internal modpack is present
+- [misc] TimeOutReminders switched to be active only in Motti's internal games since that's how it was always configured anyway
+- [misc] Minor improvements to FacePaint system's reliablity
+
+
+v1.36.1 Workshop
+- [compact_ACRE] Added skipWhenMissingDependencies to automate adding and removing this module
+
+
+v1.36 Workshop
+	This Workshop release contains changes from 1.35 as well!
+- [misc] Removed ACRE dependency (damageableItems)
+- [compact_ACRE] Added new pbo to act as compatibility for ACRE. This will remove hard-dependency on ACRE for rest of mod.
+- [misc] Added whistling
+	Sounds source: https://freesfx.co.uk/Category/Whistling/262
+- [ACEA] Added Torn piece of fabric (RAA_torn_fabric)
+	- Can be torn from anyone's uniform, even yourself. Can be used as a makeshift bandage or cable tie.
+- [ACEA] Fixed possible bug with defibrillator
+- [localMarkers] Fixed bug where JIP function would run even if localMarkers feature is disabled
+- [ACEA] RAA_painkiller is depreacated due to release of ACE's version. It's now hidden and will be replaced by ACE version automatically.
+			Should you still wish to use it as is, spawn any depleted version (RAA_painkiller_4, RAA_painkiller_3, RAA_painkiller_2, RAA_painkiller_1). These will never be replaced automatically.
+- [fieldPhone] Removed from Workshop and released as seperate hidden mod
+	https://steamcommunity.com/sharedfiles/filedetails/?id=3225081049
+
+
+v1.35
+- [beltSlots] Fixed now being able to drink directly from bottles on belt while inside vehicles (thanks prisoner!)
+- [zeus] Added zeus module "Change Inventory/ Cargo Size"
+			Used to adjust inventory and ACE cargo space and size of given vehicle/ box.
+- [zeus] Updated Zeus module "Fill crate with supplies". Added option to expand target object's inventory size to fit everything.
+			Script will spawn everything regardless, but spawning too many items to box with too small inventory makes it impossible to return anything once taken out.
+- [common] Updated fnc_debugNew.sqf
+- [misc] [damageableItems] Fixed weapon jammin on hit not working
+
+
+v1.34.1 Workshop
+- [ACEA] Fixed AED/ defib not working with remote-controlled unit
+- [ACEA] Fixed bug where defib could not be used from belt
+- [ACEA] Defibrillator should now be correctly sorted to medical items in ACE arsenal
+- [ACEA] Moved force-feeding back to medical menu but without requirement for water bottles
+
+
+v1.34	(Swifty release also includes v1.33.1 Workshop)
+- [ACEA] TreatmentFeedback: Fixed typo
+- [localMarkers] Added LocalMarkers.pbo
+			Any map markers placed mid-game will only show for player who placed them.
+			Note: Daisy-chain copying markers from player to player might not be possible?
+			RAA_localMarkers_allMarkers_send, RAA_localMarkers_override, zafw_safestart_on, RAA_localMarkers_hiddenMarkers, 
+			RAA_localMarkers_channelOverride, RAA_localMarkers_copyingDelay, RAA_localMarkers_enabled
+- [common, misc] Added Workshop relase variable to script_mod.hpp
+- [misc] DamageableItems: weapon can now be hit as well, causing a jam
+- [beltSlot] Setting to spawn water to belt in Attributes menu in 3den for units removed
+- [misc] Removed RHS hard requirement (no clue why it was hard requirement to begin with)
+- [beltSlot] Adjusted feedback text when attempting to put unsupported item on belt
+- [ACEA] Removed belt items from Arsenal Overview due to weird error
+- [Common] Added ACE_suture to RAA_common_allMedicalItems array
+- [beltslot] Fixed bug where moving items to belt while remote controlling unit actually applies items to Zeus' unit's belt rather than remote-controlled unit
+- [ACEX] Hid dirty water bottles
+- [ACEA] Force-drinking feature caused bug with ACE's arsenal medical items sorting, so it no longer requires any item
+
+NOTE: Need to fix force-drinking properly
+
+
+
+
+v1.33.1		Workshop release
+- [beltSlot] Fixed fnc_beltSlot_redirect not working
+- [fieldphone] Fixed random ACRE error on phone deployment
+
+
+
+v1.33
+- [ACEX] Slightly modified drunk function
+- [UMI_additions] Added new .pbo to seperate drug stuff to its own. This makes Workshop release easier
+- [zeus] Minor fix to TP function
+- [Misc] Fixed music radio's locality problem
+- [firesupport_additions] Added 60mm M224 & 155mm M777 to available artillery types
+- [firesupport_additions] Added keybind for opening tablet. Unbinded by default, found under TUN category in CBA keybinds
+	Note: This might delete Teleport keybind (RAA_Zeus) (if customized)
+- [ACEX] Added Drinking While Walking https://trello.com/c/poaG2pf6/43-drinking-while-moving
+- [zeus] Added Zeus modules to configure ACRE Babel https://trello.com/c/v6OCZDqZ/46-acre-babel
+			Separated to 3 modules: Add Language, Configure Sides, Set Invidual's Languages
+- [beltSlot] Moved BeltSlot system to its own PBO, it's too big for misc
+- [ACEA] Arsenal Overview now includes items on belt
+- [firesupport] Attempt #2 to make splashes visible on OCAP (never figured out why it stopped working)
+- [firesupport_additions] Added Illumination Flares (white and black light) to artillery units
+- [ACEA] Added feedback for unscosious players about medical procedures being conducted on them https://trello.com/c/VsRPvIsq/42-treatment-feedback-for-unconscious
+- [ACEA] Added option to ACE-menu to take detonator (still connected to explosives) https://trello.com/c/KuviOHtb/44-take-detonator
+- [Zeus] Fixed long-broken Zeus module 'Set Object Texture: Animated'
+- [BeltSlot] Added ability to place explosives directly from belt https://trello.com/c/hFgchbt5/6-belt-items
+- [firesupport_additions] Added type of artillery unit visible to Tablet
+- [fieldphone] Yet another attempt to make fieldphone connecting reliable. Hopefully for last time
+	- Return earpiece always visible
+	- TODO figure out way to prevent talking while unconnected
+
+https://acre2.idi-systems.com/wiki/frameworks/vehicle-racks
+
+
+
+
+v1.32
+- [Misc] DamageableItems: NVD's will now be dropped with helmet
+- [Misc] DamageableItems: When losing helmet while inside vehicle it drops inside that vehicle rather than ground
+- [Misc] DamageableItems: Changed event hints slightly
+
+- [Misc] AI_SpawnWater: Automatically adds drinkables to AI's inventories (if possible)
+- [ACEX] Added missing RAA_thermos_water_half
+- [ACEA] Added Propofol Syringe RAA_propofol
+	- Naloxone acts as counter-drug. Not exactly realistic, but suffient for gameplay reasons
+- [Common] Added Propofol to medical items array
+	TODO add more effects (sound?)
+- [misc] ChoppingDownTree: Trees should now fall away from player
+
+	
+- [ACEA, animation, fieldhpone, firesupport_additions, misc, saveLoad, zeus] Changed name of CBA settings category from "Motti_Misc" to "RAA" for more uniform naming scheme
+
+
+v1.31
+- [uniforms] Fixed FAST M05 Winter Opscore helmet
+- [fieldphone] Connecting cable switched from hard timeout to proper detection.
+					This should fix any connection issues
+- [misc] DamageableItems: Now uses proper bodypart detection
+- [misc] DamageableItems: Added helmets chance to be knocked off on hit
+									Only applies to helmets with some armor
+									NOTE: For now relies on simplified hit detection without body part detection
+- [Weaps] Fixed M136 CS variants not showing in arsenal
+
+
+v1.30
+- [Fieldphone] Fixed fieldphone connecting
+- [Fieldphone] Adjusted fieldphone to be a bit more intuitive
+- [Fieldphone] Added inventory item to make carrying it easier. Can only be packed in inventory once disconnected
+- [ACEA] Improved AED deploying
+- [Zeus] Fixed AISkillLevel's invidual unit override via Zeus module
+- [firesupport] Fixed OCAP markers?
+- [common] Updated
+- [misc] Added Damageable Inventory items
+		- Simulates certain inventory items like water bottles and radios taking damage from bullets
+			Even if your combat vest may stop bullet, your radio and water bottles are located outside your vest, vulnerable
+- [firesupport] Updated to v2.1.3
+- [misc] beltItem: Fixed weird orientation of SatchelCharge_Remote_Mag
+
+
+
+Known bugs:
+- BeltItems: Moving item from external inventory to belt sometimes does not delete item from external inventory
+- Fieldphone: If earpiece is picked up while someone else starts call phone will say you started call
+- Fieldphone: Muting/ unmuting phone while its already ringing will not take effect until next time it starts ringing
+- BeltSlot: Moving half-empty magazine to belt will fill it to full
+
+
+
+
+v1.29
+- [Misc] Fixed beltItems spawning via init
+- [Zeus] "Optimized" AISkillPresets system and added option to disable Lambs from vehicles
+- [Common] Added supportive functions
+- [ACEA] Defibrillator can now be used from belt
+		TODO add better model
+- [Zeus] AISkillLevel: Improved invidual unit's override
+		- Added Zeus module
+		- Improved manual solution:
+			- Via init setVariable (added in previous update) still works
+			- If running mid-game: ["RAA_zeus_AISkillPreset_set", [cursorObject, 2], cursorObject] call CBA_fnc_targetEvent;
+- [fieldphone] Added functional Field Telephone <RAA_fieldphone>
+		For now only placeable and transportable as object. Inventory item planned.
+- [Zeus] Moved 'Fill crate with supplies' module from RAA to ZAFW category
+
+Known bugs:
+- BeltItems: Moving item from external inventory to belt sometimes does not delete item from external inventory
+
+
+
+v1.28
+- [ACEA] Arsenal Overview: Added CBA options:
+			- Hide item count with unique items. Default: true
+- [Zeus] Added module: Force Surrender on Hit
+- [Zeus] Added ability to override invidual unit's skill level
+			this setVariable ["RAA_zeus_skillLevel", 3];
+			Where 1 is desired skill level (1 - 5): Untrained, Poorly trained, Trained, Experienced, Special Forces
+- [ACEA] Arsenal Overview: Now works with Zeus and 3DEN. Slower to refresh and less efficient than on player but it works!
+- [Common] Added global variable RAA_common_allMedicalItems
+				Array that contains all medical items classnames in easily updated array
+- [ACEX] Added minor visual effect for drunk
+- [Misc] Added ACE interaction to FM radio object to play some music
+- [Misc] Added some music and dialog tracks
+- [Misc] Added drag-and-dropping system for moving items to belt in inventory screen
+			This was WAY WAY bigger job than it seems like.......
+- [Misc] Removed hiding beltItems when entering vehicle since A3 v2.10 fixed floating attached items bug
+
+5 files + changelog
+
+
+
+v1.27
+- [Misc] Fixed error regarding Timeout Reminders
+- [ACEA] Fixed error in RPT caused by players-touching-patient-while-defibrillated trying to shock server as well
+- [ACEA] Painkillers treatmentTime is now CBA setting, default 5 seconds (Length of sound effect)
+- [ACEA] Fixed painkiller & defib sound effects
+- [Zeus] Added keybind for teleporting selected objects in Zeus (Same function as context menu one)
+			Default: Shift + V
+- [Misc] Fixed Zeus' Belt items floating mid-air if zeus is invisible (Duck-tape)
+- [Zeus] Added option to Zeus object teleporting: if ctrl is held will ignore collision check when teleporting multiple objects
+				Can be used to teleport players elevated building. Teleporting destructable objects will be propably lead to fireworks
+- [Zeus] Teleporting action: Teleported objects are now immune to damage during tp. They're not immune to physics glitching though!
+- [Zeus] Added Zeus module: Rapid Fire MLRS/ Artillery
+			Allows firing MLRS, like GRAD, at full rate. Primarily meant for MLRS, but should work for any arty
+			- Known bug: For now only works on local units
+- [FiresA] Upgraded to CBA framework
+- [Zeus] Added zeus module: Set cTab encryption keys. Allows Zeus to modify CTAB keys, allowing any selected sides to see each other
+- [Tun Firesupport] Added crude support for OCAP; creates map markers on server that should show on OCAP records
+- [Tun Firesupport] Fixed aiming point markers showing to everyone
+- [Zeus] SkipTimeWithHunger module: Added feedback to Zeus for how long players are blinded
+- [ACEA] Backwards compatibility Defib/ Nalox spanwer now uses ZAFW to spawn items if present
+- [FiresA] Potentially fixed problem with ammo modules in MP
+- [Misc] Experimental fix for spawning items on belt using per-unit solution
+- [ACEA] Added Items Overview to Arsenal screen
+			- Can be disabled via CBA setting
+- [Uniforms] Added FAST helmet with M05 Snow camo
+
+
+6 files + changelog
+
+
+v1.26
+- [Misc] Fixed chopping trees action
+- [Zeus] Added Zeus module: Set Instadeath settings (Should work, in theory)
+- [Misc] Fixed floating items when mounting vehicles (This time for real)
+- [Misc] Adjusted fnc_beltSlot_doMoveToBelt to be easier to execute by mission maker
+			Now requires to be executed where unit is local, allowing use of each invidual unit's init field
+- [Misc] BeltItems: Fixed auto-move bottles to belt on mission start -feature to fill both belt slots if possible
+- [Misc] Adjusted TimeoutReminders. Now allows reducing time allocated for Zeus briefing
+			Defaults: If countdown start was delayed (low player count) zeus has 5 minutes to deliver brief. Total prep time 20 mins
+- [Misc] Adjusted BeltItems to support headgear and large (MG) magazines better
+- [Zeus] Fixed AI animation Zeus module
+
+2 files + changelog
+
+NOTE: beltSlot GUI experimentation!
+
+
+
+v1.25
+- Updated to CBA: Common, Misc, ACEA, ACEX, animation, zeus
+
+- [Misc] Fixed vdv radio song
+- [Misc] BeltItems: Added CBA option to auto-move bottles to belt on mission start
+				Default setting is disabled to avoid confusion
+- [Misc] BeltItems: Fixed floating items when mounting vehicles
+- [Misc] BeltItems: Enabled external script to add items directly on belt without requiring them in inventory first
+		["", player, "ACE_canteen", true] call RAA_misc_fnc_beltSlot_doMoveToBelt
+- [FiresA] Added new guns to presets: Mk45, Modèle 68 CADAM and AK-130 naval guns
+
+7 files + changelog
+
+
+
+v24
+- [ACEX] Added water bottles <RAA_waterBottle_dirty> and <RAA_waterBottle_dirty_half>
+		WIP
+- [Misc] Chopping tree: Seperated chopping and delimbing actions
+- [Zeus] Changed rcs layer of Zeus Side Relations hint
+- [Misc] Added feature: Put items on belt. Allows any item or magazine heavier than 1 kg on belt, and all drinkable items.
+								Two slots are provided; left and right. Accessed via ACE self-menu
+								Drinkable items can be drunk directly, everything else must be moved to inventory first to be used
+- [Zeus] Seperated ZAFW resupply box spawning fuction into two parts: Dialog and actual function
+
+
+v23
+- [FiresA] Added PLA arty: PLZ-05A and PLZ-07
+- [Misc] Fixed delimbing tree not hiding fallen tree on server
+- [Misc] Increased volume of Chainsaw a bit
+- [ACEA] Fixed unfinished texture of Generic Alcohol Bottle
+- [Misc] Added first, very crude custom animation for chainsaw
+
+
+
+v22
+- [ACEX] Added item: Alcohol Bottle <RAA_bottle_genericAlcohol>
+- [Static] PJ tent: Fixed missing textures and adjusted main fabric texture
+- [ACEA] Auto-spawning medical items: Default CBA settings set to not spawn anything.
+			Can be changed in CBA settings. Forced by server in MP
+- [Misc] Tree cutting: Axe, shovel and chainsaw work times now adjustable in CBA settings
+- [Misc] Tree Cutting: Chainsaw sound effect audible range significantly increased
+- [Misc] Tree Cutting: If using cutting down tree option near already fallen tree it will delimb that tree instead
+- [Zeus] Added Side Relations hint that shows up every time Zeus opens interface
+- [FiresA] Added data about each gun to tooltip in Edit Guns dialog
+- [Zeus] Added module: Copy Terrain Object
+			Allows easily copying existing object
+			Cannot copy objects that do not have configs (like trees and many walls)
+NOTE: Do not pack Weaps
+
+
+
+
+v21.1 Hotfix
+- [ACEA] Fixed game-breaking bug
+
+
+v21
+- [ACEA] Adjusted Defib and AED item descriptions
+- [ACEA] Fixed defibrilator in MP
+- [Weap] Fixed M136 CS unable to be loaded and fired
+- [ACEA] Added CBA option to automatically add defib or AED to player medic IF they dont already have one spawned and ZAFW exists
+			External scripts have 8 seconds to spawn one from mission start to avoid duplicates. Player must also have space in inventory
+			- Adjusted to not do anything if most recent ZAFW is present
+			- Also supports Naloxone
+			NOTE: Remember to also reduce CPR success chance on server
+- [Weap] Ported A2 M136 model for CS version in order to be able to change rocket's velocity to realistic 220 m/s
+			Failed, moved to backburner, way too complicated math!
+- [Fires] Added players count for each side to Side Selection dialog
+- [ACEA] AED picking up changed to give feedback why it cannot be picked up
+- [ACEA] Added Naloxone <RAA_naloxone>. An antidote for morphine overdose
+- [Misc] Added new items: Axe <RAA_axe> and Chainsaw <RAA_chainsaw>. Chainsaw is still missing proper 3D model
+- [Misc] Added feature: Chop down trees. Found in ACE equipment menu.
+			Requires you to have one of three items in inventory:
+			- ACE_EntrenchingTool, RAA_axe or <RAA_chainsaw
+- [Uniforms] Added bunch of different versions of Motti cap: (h= headset, g= goggles, back= backwards)
+			RAA_H_Cap1, RAA_H_Cap1_back, RAA_H_Cap1_h, RAA_H_Cap1_h_back, RAA_H_Cap1_g, RAA_H_Cap1_hg
+- [Uniforms] Removed battery pack from M05 Opscore helmet
+- [TacReady] Manual high/med/low ready positions now reset when arsenal is opened
+- [TacReady] Fixed bug where collisionAvoidance animation could get stuck if weapon was lowered while inside bush
+- [TacReady] Fixed bug where forceWalking (from vegetation) could get stuck
+- [Perceptive] Very mildly modified mod; disabled "50" option from Terrain quality slider. This forces grass always enabled
+- [Uniforms] Added new suits with Motti logo: 3 variations of Rangemaster and 3 of Competitor
+
+
+
+
+v20
+- [Zeus] Fill Crate with Supplies module: Added check to ensure target has inventory storage
+- [Zeus] Context menu action Teleport: Now removes any movement velocity from object
+- [Zeus] Remote Control submenu: No longer shows vehicles, only mens
+- [Weap] Disabled IR-light mode from AN/PEQ-16A, in prep for addition of another mod doing same thing
+- [ACEA] Added Defibrillator <RAA_defibrillator> & AED <RAA_AED> (Automated External Defibrillator)
+	- Defibrillator is for medic only and does not check patient's condition
+	- AED will do checks to avoid harming patient
+	- Both will harm anyone touching patient when shock is delivered
+- [ACEX] Added Thermos Bottles: Tea <RAA_thermos_tea> and Coffee <RAA_thermos_coffee>
+
+
+
+
+v19
+- [FiresA] Added new PBO: Firesupport Additions. Enhances Tuntematon's mod
+- [FiresA] Added Zeus module: "Tun Artillery: Add/ Edit Battery"
+- [FiresA] Added Zeus module: "Tun Artillery: Add/ Edit Ammo"
+- [FiresA] Changed name of item tun_tablet from Military Tablet to Fire Support Tablet
+				and increased weight to more realistic value (I doupt rugged military tablet weights less than a tomato)
+- [Misc] TimeoutReminders: Changed how messages are executed
+- [Zeus] Added context menu action: Do Supress
+			Gives Lambs order to group to conduct supression for short time
+- [Zeus] Added sub-menu to Remote Control Context-menu
+			This is populated with all selected AI units.
+			Goal is to make it easier to control certain unit inside vehicles
+- [Zeus] Improved Zeus module: Fill crate with supplies 
+			- Zeus can now select to add water as bottles, source, both or neither
+			- Now prompts if resupply inventory is not collected yet. Added way to refresh it
+- [TacReady] Added ACE arsenal as exception to wallAvoidance
+- [Weaps] (Maybe) Added map-reading light to AN/PEQ-16A
+
+
+
+
+v18
+- [FDF] Finnish Flag added in previous update is now Zeus spawnable 
+- [FDF] Added winter infantry squads
+- [FDF] Added preview images for all units
+- [Weap] Removed M32 test version that was forgotten behind enemy lines
+- [Misc] Timeout warnings switched to be server-side
+- [Static] Added PJ tent v1
+- [Uniforms] Added Opscore helmet with M05 camo cover
+- [Zeus] Added module: Set object Texture: Static
+	- Can be used to eg. set static screen to PC,
+		or mark ranges at shooting range to any object that supports hiddenTextures
+- [Weap] slightly decreased volume of TM 65
+- [Zeus] AISkillLevels system setting unconfigured reminders enhanced:
+	- in MP: Force-opens settings dialog for Zeus when he enters Zeus interface
+	- in editor: Opens pop-up reminder window when pressing "preview" with ZAFW in mission
+- [Weap] Fixed M32 pistol hand animation
+- [Zeus] Added module: Set object Texture: Animated
+	- Used to "animate" screen (laptop, TV etc) with series of images
+- [Zeus] Adjusted skipTimeWithHunger module. Now with option to select finnish in auto-filled text
+
+
+
+
+v17
+- [Misc] Added ZAFW Timeout Reminders. Used to enforce safestart time limits
+	- Note: Still missing sounds
+- [ACEX] Made Land_Sofa_01_F to be sitable
+	- Note: sitting happens one(1) meter above sofa to avoid staining the fabric (This is ACE problem)
+- [Zeus] Improved ContextAction Teleport Object: 
+	- Holding shift while teleporting single object will now
+		teleport it one meter higher. Used in case TP'd object ends up inside object
+	- Holding ALT will flip object(s) upright
+- [FDF] Soldiers now have Finnish names
+- [FDF] Added Finnish Flag Pole
+- [ACE] Added proper litter for used painkillers
+- [FDF] Finnish soldiers now speak finnish.
+	Note: This is temporarily executed via script until config solution is found
+- [FDF] Infantry unit's gear is no longer scripted
+- [FDF] Added winter infantry units
+
+
+
+
+v16.2
+- [Zeus] Moved Set Fog module to Enviroment folder in Zeus modules
+- [Zeus] 'Fill crate with supplies' Zeus module: Added option to add water source to object
+			Note: Even water source is disabled, players still receive note about it when they approach object
+- [Zeus] Fixed: AISkillPresets system no longer warns about mission presets not set if ZAFW is not present
+- [ACEA] Fixed painkillers sound
+
+
+
+
+v16
+- [Weap] Added M136 Confined Space (CS) variants
+	- Proper backblast visual effect pending
+- [Uniform] Changed Agent suits to use AoW DLC suits
+
+
+
+V15
+- [Zeus] AISkillPreset: Unset AI skills warning message now only shows if ZAFW is present in mission
+- [Weap] Reduced sound volume of TM 65 explosion
+- [TacReady] Collisions now ignored when Zeus interface is open
+- [TacReady] Added ACE sitting animations to exclusions list
+
+
+
+v14.1 Hotfix
+- [Zeus] Adjusted setFog module
+- [TacReady] Adjusted some CBA setting names
+- [Zeus] Added missing water water and some medical supplies to "Fill crate with supplies" Zeus module
+- [ALL except FDF, Uniforms, TacReady] Fixed all broken file paths. 
+- [Anims] Added pissing animation
+- [TacReady] Adjusted how main loop is ran. Removed unnecessary interval check and now rely on CBA PFH to do loop interval
+					Also slowed down execution intervals. Used to run every 0,075 seconds
+					Now executed every 0,15 seconds. Might be tweaked in future
+- [TacReady] Adjusted slow-down-in-vegetation feature. Now only triggers when weapon collision is also detected, in addition to bush nearby
+
+
+
+v14
+- [Misc] Fixed Facepaint applying animations, which were broken by ACEX merge to ACE
+- [TacReady] Added trench-digging animation to overrides array
+- [Misc] Added CBA option to disable shift-click waypoint placement on map
+- [Zeus] Improved Zeus' Teleport context action to support multiple objects selected.
+	- If only one object is selected, it is placed at exact position
+	- If several objects are selected, they will be spaced out to avoid explosions
+- [Zeus] Added Set Fog module. Hopefully this is able to little bit more clearly set fog in missions.
+- [Weap] Improved explosion sound of TM 65 AT mine. Still to be tuned, though
+- [Zeus] Fill crate with Supplies Zeus module will no longer init if resupply system is disabled, even if ZAFW is present
+- [TacReady] Added force-walking when inside vegetation
+- [FRW] Changed some CBA settings to now work more expected way.
+- [Uniforms] Added M59/85 helmet with Alpenflage camo
+
+
+v13
+- [Weap] Added IR light mode to: AN\PEQ-16A `RAA_acc_anpeq16a_lightIR`
+- [FDF] Added first pass of Finnish Defence Forces faction
+- [Zeus] Added Zeus module: Fill crate with supplies.
+	Requires ZAFW to be present in mission
+
+- [TacReady] Added CBA setting: IgnoredTerrainObjectsLookDistance
+	- Default 7 m. Should be kept as low as possible for performance reasons.
+
+
+v12
+- [TacReady] Fixed weapon collision to ignore bushes (Added correct parameters to already existing system)
+- [TacReady] Added CBA parameter to adjust above mentioned fix
+- [Weap] Added M32 MGL to pistol slot `RAA_weap_m32_pistol`
+- [Zeus] Slightly change to skipTimeWithHunger Zeus module
+- [Zeus] Fixed Jam Player's Weapon Zeus module, attempt two
+
+
+
+v11.1 Hotfix
+- [Zeus] Fixed going to spectator breaking everything in the universe. Hopefully.
+- [Zeus] AISkillPreset: Fixed unset settings reminder not showing to zeus
+- [Zeus] Attempted fixing Zeus map marker rotation bug-ducktape fix
+- [FRW] Fixed small typo in settings
+
+
+v11
+- [Anim] Removed some animations
+- [Zeus] Removed Teleport -module since its functionality is in context menu as well
+- [Misc] Unified some CBA setting names
+- [Anims] Unified CBA setting names
+- [Static] Added Snow camouflage nets
+- [Zeus] Added setAiSkillLevel Zeus module and CBA settings
+
+
+
+v10.1 Hotfix
+- [FRW] Fixed some CBA settings not having effect
+- [Misc] Fixed facePaint feature not detecting already painted face as it was supposed to
+- [Misc] Optimized facepaint feature
+- [Weap] Removed alpha from TM 65's texture - attempt to remove transparency of model
+- [FRW] Fixed text warning not respecting cooldown setting
+- [FRW] Added CBA setting for selecting treshold when warnings should start appearing (in per cent hunger/thirst)
+
+
+v10
+- [Misc] Added Motti Flag
+- [Misc] Added item: IED parts (unassembled IED) RAA_unfinished_ied
+- [Misc] Added action to ACE self-menu to allow painting face
+- [Misc] Added item RAA_facepaint (Required to paint face, unless set otherwise in settings)
+- [ACE] Added Painkillers RAA_painkiller. This item contains 5 uses
+- [ACEX] Added Zeus-placeable item for alcohol-free beer
+- [ACEX] Adjusted consumeable item effect values slightly since they were out of balance
+- [ACEX] Corrected size of whiskey bottle
+- [Zeus] Improved skipTimeWithHunger -module
+- [Zeus] Fixed Jam Player's Weapon module
+- [Zeus] Fixed ForceSpectator module
+- [Zeus] Fixed Zeus map markers rotation not updating to clients (Ducktape fix)
+- [Weap] Added TM 65 to be Zeus-spawnable
+
+
+v9
+- [Zeus] Small adjustment to skipTimeWithHunger Zeus Module (Still ToDo: FindBest item)
+- [ACEX] Fixed debug message unintentionally showing when consuming any item
+- [Anim] Finished animation looping
+- [Anim] Fixed animation loop type 1 with animation Random playing same anim twice in a row before randomizing again
+- [TacReady] Fixed keybind not to jerk gun while in Zeus camera
+
+
+
+v8
+- Added drunk effects when drinking alcohol beverages
+- Changed RAA_Can_beer to contain alcohol.
+- Added RAA_Can_Beer_AlcoholFree
+- Added consumeable Coke with proper visual effects, of course
+- Added Zeus Module: Force player spectator (UNTESTED IN MP)
+	Allows for manually setting player's spectator or pulling them back
+- Added Zeus Module: Jam player's weapon
+- Added TM-65 mine
+- Added option to loop animations (First pass, for now users have to manually pick looping type (3 options, not all work for all animations. This choice will be integrated to animation config in next update))
+
+TacReady:
+- Added option to select preferred collision avoidance animation
+	(High Ready vs Medium Ready)
+- Added keybinding for Medium Ready animation
+- Moved list of Overriding Animations from CBA setting to gunOverrides.sqf.
+   CBA setting remains to quickly add new exclusion animations
+
+
+
+v7
+- Added Motti Baret
+- Added 3d-model to Whiskey bottle
+- Added Teleport Object -action to Zeus Context Menu
+
+
+Animations:
+- Fixed animations to work with Zeus Remote Controlled units
+- Added crude first pass to animation looping (Disabled for now)
+
+
+v6
+- Added Zeus module: Set player hunger/ thirst
+	Allows manually setting hunger/ thirst level of invidual player
+- Added Zeus Module: Skip Time with Hunger
+	Allows Zeus to create time skip that simulates consumption of
+	ACEX Field Ration items
+- Added Check Hunger/ thirst and Force Drink -options to ACE Medical menu
+
+
+
+v5
+- Fixed broken Animations
+- Added Zeus Module: Play Animation on unit
+	This is intended to be used to play animations on AI
+	NOTE: Unit is NOT combat-ready when playing these animations.
+	Use module "Ambient Animations" if unit should be able to return fire.

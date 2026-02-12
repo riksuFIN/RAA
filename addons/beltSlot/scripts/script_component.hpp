@@ -1,0 +1,1 @@
+#include "\r\RAA\addons\beltSlot\script_component.hpp"

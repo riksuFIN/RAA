@@ -1,0 +1,112 @@
+/* File:	fnc_create_gun.sqf
+ * Author: 	riksuFIN
+ * Description:	Modified version of Tuntematon's Firesupport mod's fnc_module_gun.sqf file
+ 	
+ 
+ 
+ * Called from:	Various
+ * Local to: 		Client
+ * Parameter(s):
+ 0:	
+ 1:	
+ 2:	
+ Returns:		Nothing
+ * 
+ * Example:
+	[] call RAA_firesA_fnc_createGun
+ */
+
+/*	FOLLOWING HEADER IS FROM ORIGINAL FNC; DOES NOT APPLY TO THIS MODIFIED FILE
+* Author: [Tuntematon]
+* [Description]
+*
+* Arguments:
+* 0: Module <OBJECT>
+*
+* Return Value:
+* None
+*
+* Example:
+* [module] call tun_firesupport_fnc_module_gun
+*/
+
+
+if (!isServer) exitWith { };
+
+private _gunModule = param [0,objNull,[objNull]];
+
+//TODO lisää conffiin että voi muuttaa
+private _classname = _gunModule getVariable ["className", "Missing classname"];
+private _name = _gunModule getVariable ["displayName", "Missing name"];
+private _side = _gunModule getVariable ["side", sideLogic];
+private _markerConditio = _gunModule getVariable ["marker", true];
+private _gunCount= _gunModule getVariable ["gunCount", 1];
+// private _countdown = _gunModule getVariable ["countDown", 60];
+// private _min_spread = _gunModule getVariable ["spreadMin", 50];
+// private _max_spread = _gunModule getVariable ["spreadMax", 500];
+// private _min_delay = _gunModule getVariable ["delayMin", 1];
+// private _max_delay = _gunModule getVariable ["delayMax", 60];
+// private _minRange= _gunModule getVariable ["minRange", 0];
+// private _maxRange = _gunModule getVariable ["maxRange", 10000];
+
+
+if (_gunCount < 1) then {
+	_gunModule setVariable ["Tun_firesupport_gunCount", 1, true];
+};
+
+
+/*
+//Ammo module stuff
+{
+	private _obj = _x;
+	private _ammo = _obj getVariable "Ammo";
+	private _count = _obj getVariable "Count";
+	_obj setVariable ["currentCount", _count, true];
+	_obj setVariable ["reservedCount", 0, true];
+} forEach synchronizedObjects _gunModule;
+*/
+
+_gunModule setVariable ["Tun_firesupport_is_firing", false, true];
+_gunModule setVariable ["Tun_firesupport_status", "STR_Tun_firesupport_status_free" call BIS_fnc_localize, true];
+_gunModule setVariable ["Tun_firesupport_firemissions", [], true];
+_gunModule setVariable ["Tun_firesupport_firemissionCount", 0, true];
+
+/*
+switch ( toLower _side) do {
+	case "west": {
+		Tun_firesupport_guns_west pushBack _gunModule;
+		publicVariable "Tun_firesupport_guns_west";
+		_side = west;
+		_icon = "b_art";
+		_color = "colorBLUFOR";
+	};
+
+	case "east": {
+		Tun_firesupport_guns_east pushBack _gunModule;
+		publicVariable "Tun_firesupport_guns_east";
+		_side = east;
+		_icon = "o_art";
+		_color = "colorOPFOR";
+	};
+
+	case "resistance": {
+		Tun_firesupport_guns_resistance pushBack _gunModule;
+		publicVariable "Tun_firesupport_guns_resistance";
+		_side = resistance;
+		_icon = "n_art";
+		_color = "colorIndependent";
+	};
+
+	case "civilian": {
+		Tun_firesupport_guns_civilian pushBack _gunModule;
+		publicVariable "Tun_firesupport_guns_civilian";
+		_side = civilian;
+		_icon = "n_art";
+		_color = "colorCivilian";
+	};
+
+	default {
+
+	};
+};
+*/

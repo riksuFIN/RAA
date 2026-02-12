@@ -1,0 +1,5 @@
+
+[sqf.var_all_caps]
+options.ignore = [
+    "RAA_*", "ACEA_*"
+]
