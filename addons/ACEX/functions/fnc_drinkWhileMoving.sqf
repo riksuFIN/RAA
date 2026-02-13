@@ -71,7 +71,7 @@ _consumeText = format [_consumeText, _displayName];
 private _stanceIndex = ["STAND", "CROUCH", "PRONE"] find stance _player;
 
 // Handle in vehicle when stance is UNDEFINED
-if (vehicle _player != _player) then {_stanceIndex = 0};
+if (isNull objectParent _player) then {_stanceIndex = 0};
 
 private _consumeAnim = getArray (_config >> "acex_field_rations_consumeAnims") param [_stanceIndex, "", [""]];	// CONVERSION TO WALKABLE: This animation doesnt matter, just here for legacy reasons
 private _consumeSound = getArray (_config >> "acex_field_rations_consumeSounds") param [_stanceIndex, "", [""]];

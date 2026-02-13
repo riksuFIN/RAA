@@ -18,7 +18,11 @@ class CfgPatches
 			"RAA_painkiller_4",
 			"RAA_painkiller_3",
 			"RAA_painkiller_2",
-			"RAA_painkiller_1"
+			"RAA_painkiller_1",
+			"RAA_naloxone",
+			"RAA_propofol",
+			"RAA_defibrillator",
+			"RAA_AED"
 		};
 
 		requiredAddons[] = {

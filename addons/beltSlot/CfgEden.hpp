@@ -61,7 +61,7 @@ class Cfg3DEN {
                         tooltip = "Allows for easily adding water bottles directly to belt slot";
                         //expression = QUOTE(if !(_value == DEFAULT_ISENGINEER || {_value == -1}) then {_this setVariable [ARR_3('%s',_value,true)]});
 							//	expression = QUOTE(if (!is3DEN && _value > -1) then {['', _this, ['ACE_canteen', 'ACE_WaterBottle'] select _value, true, 0] call FUNC(beltSlot_doMoveToBelt)});
-								expression = QUOTE(if (!is3DEN && _value > -1) then {['', _this, ['ACE_canteen', 'ACE_WaterBottle'] select _value, true, 1] remoteExec FUNC(beltSlot_doMoveToBelt)});
+								expression = QUOTE(if (!is3DEN && _value > -1) then {ARR_5('', _this, ['ACE_canteen', 'ACE_WaterBottle'] select _value, true, 1) remoteExec FUNC(beltSlot_doMoveToBelt)});
                         typeName = "NUMBER";
                         condition = "objectBrain";
                         defaultValue = -1;
@@ -72,7 +72,7 @@ class Cfg3DEN {
                         displayName = "Add Water Bottles to Belt Slot 2";
                         tooltip = "Allows for easily adding water bottles directly to belt slot";
                         //expression = QUOTE(if !(_value == DEFAULT_ISENGINEER || {_value == -1}) then {_this setVariable [ARR_3('%s',_value,true)]});
-								expression = QUOTE(if (!is3DEN && _value > -1) then {['', _this, ['ACE_canteen', 'ACE_WaterBottle'] select _value, true, 1] remoteExec FUNC(beltSlot_doMoveToBelt)});
+								expression = QUOTE(if (!is3DEN && _value > -1) then {ARR_5('', _this, ['ACE_canteen', 'ACE_WaterBottle'] select _value, true, 1) remoteExec FUNC(beltSlot_doMoveToBelt)});
                         typeName = "NUMBER";
                         condition = "objectBrain";
                         defaultValue = -1;

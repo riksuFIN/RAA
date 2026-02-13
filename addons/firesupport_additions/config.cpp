@@ -29,21 +29,3 @@ class CfgPatches
 #include "cfgMagazines.hpp"
 #include "cfgVehicles.hpp"
 #include "cfgWeapons.hpp"
-
-
-/*	CBA framework conversion; moved to XEH
-//	Add CBA Settings
-class Extended_PreInit_EventHandlers {
-    class RAA_firesupport_additions_pre_init_event {
-        init = "call compile preprocessFileLineNumbers '\r\misc\addons\RAA_firesupport_additions\CBA_Settings.sqf'";
-    };
-};
-*/
-
-/*
-class Extended_PostInit_EventHandlers {
-    class RAA_firesupport_additions_post_init_event {
-        init = "call compile preprocessFileLineNumbers '\r\misc\addons\RAA_firesupport_additions\XEH_postInit.sqf'";
-    };
-};
-*/

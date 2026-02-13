@@ -29,7 +29,7 @@ if (hasInterface) then {
 		] call CBA_fnc_waitAndExecute;
 	};
 	
-	/*		DISABLED since Arma 2.10 update enabled attached objects staying attached when entering vehicle
+	
 	// Add EH for get in/ get out of vehicles to hide bottle 3d models
 	player addEventHandler ["GetInMan", {
 		[_this select 0, true] call FUNC(beltSlot_onMountingVehicle);
@@ -38,25 +38,20 @@ if (hasInterface) then {
 	player addEventHandler ["GetOutMan", {
 		[_this select 0, false] call FUNC(beltSlot_onMountingVehicle);
 	}];
-	*/
+	
 	
 	
 	// Inventory EH for beltSlot drag-and-drop system
 	player addEventHandler ["InventoryOpened", {
 		params ["_unit", "_container"];
-		ace_player setVariable [QGVAR(beltSlot_openedContainer), _container];
+		_unit setVariable [QGVAR(beltSlot_openedContainer), _container];
 	}];
 	
 	player addEventHandler ["InventoryClosed", {
 		params ["_unit", "_container"];
-		ace_player setVariable [QGVAR(beltSlot_openedContainer), objNull];
+		_unit setVariable [QGVAR(beltSlot_openedContainer), objNull];
 	}];
 	
-	player addEventHandler ["Respawn", {
-		params ["_unit", "_corpse"];
-		call FUNC(onRespawn);
-	}];
-
 	player addEventHandler ["Respawn", {
 		params ["_unit", "_corpse"];
 		call FUNC(onRespawn);

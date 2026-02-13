@@ -47,7 +47,7 @@ class ace_medical_treatment_actions {
 		callbackFailure = "";
 		callbackProgress = "";
 		//condition = "ACEX_field_rations_enabled";
-		condition = QUOTE([_player] call FUNC(forceFeed_canUse));
+		condition = QUOTE(ARR_1(_player) call FUNC(forceFeed_canUse));
     };
 	
 	
@@ -161,7 +161,7 @@ class ace_medical_treatment_actions {
 		medicRequired = 1;
 		treatmentTime = 8;
 	//	items[] = {"RAA_defibrillator"};
-		condition = QUOTE([_player] call FUNC(defib_canUse));
+		condition = QUOTE(ARR_1(_player) call FUNC(defib_canUse));
 		callbackSuccess = "RAA_fnc_ACEA_defib_success";
 		callbackFailure = "";
 		callbackProgress = "";

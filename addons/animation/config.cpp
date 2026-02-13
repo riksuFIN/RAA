@@ -25,35 +25,9 @@ class CfgPatches
 			"zen_dialog"
 		};
 		
-		
 	};
 };
 
 #include "CfgEventHandlers.hpp"
 #include "cfgVehicles.hpp"
 #include "cfgWeapons.hpp"
-
-
-
-/*		Delete later
-//	Add CBA Settings
-class Extended_PreInit_EventHandlers {
-    class RAA_animation_pre_init_event {
-        init = "call compile preprocessFileLineNumbers '\r\misc\addons\RAA_animation\CBA_Settings.sqf'";
-    };
-};
-
-class Extended_PostInit_EventHandlers {
-    class RAA_animation_post_init_event {
-        init = "call compile preprocessFileLineNumbers '\r\misc\addons\RAA_animation\XEH_postInit.sqf'";
-    };
-};
-*/
-
-
-
-
-
-
-
-

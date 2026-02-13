@@ -41,7 +41,6 @@ class CfgPatches
 			"RAA_tinCan_DelMontre",
 			"RAA_tinCan_peaSoup"
 			
-			
 		};
 
 		requiredAddons[] = {
@@ -57,12 +56,3 @@ class CfgPatches
 #include "cfgWeapons.hpp"
 #include "cfgSounds.hpp"
 #include "CfgMovesMaleSdr.hpp"
-
-
-/*
-class Extended_PostInit_EventHandlers {
-    class RAA_ACEX_Additions_post_init_event {
-        init = "call compile preprocessFileLineNumbers '\r\misc\addons\RAA_ACEX_Additions\XEH_postInit.sqf'";
-    };
-};
-*/

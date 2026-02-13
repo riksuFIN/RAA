@@ -1,4 +1,3 @@
-//PREP(empty);
 PREP(AISkillPreset_createDialog);
 PREP(AISkillPreset_getSkillsArray);
 PREP(AISkillPreset_handleModule);
@@ -30,9 +29,3 @@ PREP(babel_createDialog_addLanguage);
 PREP(babel_handleDialog_configureSide);
 
 PREP(createDialog_changeInventorySize);
-
-
-
-
-
-// RAA_zeus_fnc_

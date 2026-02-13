@@ -1,8 +1,6 @@
 
 ================ KNOWN BUGS ===================================
-- BeltItems: Unable to drop on ground
 - BeltItems: Drinking half bottle deletes entire bottle
-- Bottles float in air after DC
 - ACE Arsenal Overview & Item Description will not hide with rest of interface
 - BeltSlot: After client disconnects from MP server bottles their bottles are removed, even if their body remains to be controlled by AI.
 

@@ -31,7 +31,6 @@ class CfgPatches
 #include "cfgWeapons.hpp"
 #include "cfgSounds.hpp"
 #include "cfgVehicles.hpp"
-//#include "gui_loadoutOverview.hpp"
 #include "arsenalGUI.hpp"
 
 

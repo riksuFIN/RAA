@@ -28,7 +28,7 @@ private _classname = _object getVariable [QGVAR(classname), ""];
 [_slot, _owner] remoteExec [QFUNC(beltSlot_deleteFromBelt), _owner];
 
 // Add visual feedback
-[_player, "PutDown"] call "ACE_common_fnc_doGesture";
+[_player, "PutDown"] call ACE_common_fnc_doGesture;
 [4, 1, 5] remoteExec ["addCamShake", _owner];
 ["Someone took something from your belt"] remoteExec ["systemChat", _owner];
 

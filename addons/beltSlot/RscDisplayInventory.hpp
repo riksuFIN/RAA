@@ -53,19 +53,19 @@ class RscDisplayInventory {
 		
 		class GroundContainer: RscListbox {
 		//	onLBDrop = QUOTE([-1, player, 9, _this select 3] call FUNC(beltSlot_doMoveFrombelt));
-			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288, 1289)) then {ARR_4(-1, ACE_player, 9, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288,1289)) then {ARR_4(-1, ACE_player, 9, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		
 		class UniformContainer: GroundContainer {		// idc = 633;		Select 3
-			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288, 1289)) then {ARR_4(-1, ACE_player, 0, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288,1289)) then {ARR_4(-1, ACE_player, 0, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		
 		class VestContainer: UniformContainer {		// idc = 638;
-			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288, 1289)) then {ARR_4(-1, ACE_player, 1, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288,1289)) then {ARR_4(-1, ACE_player, 1, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		
 		class BackpackContainer: UniformContainer {		// idc = 619;
-			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288, 1289)) then {ARR_4(-1, ACE_player, 2, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in ARR_2(1288,1289)) then {ARR_4(-1, ACE_player, 2, _this select 3) call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		
 	};

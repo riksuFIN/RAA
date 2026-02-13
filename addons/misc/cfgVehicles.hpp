@@ -5,14 +5,14 @@ class CfgVehicles {
 			
 			class ACE_Equipment {
 				class ace_overheating_UnJam {
-					condition = QUOTE(!RAA_misc_hideACEUnjamming && ace_overheating_enabled && {QUOTE_1(_player) call ACE_overheating_fnc_canUnjam});
+					condition = QUOTE(!RAA_misc_hideACEUnjamming && ace_overheating_enabled && {_player call ACE_overheating_fnc_canUnjam});
 				};
 				
 				class RAA_camoFace_paint {
 					displayName = "Apply face camouflage paint";
-					condition = QUOTE([_player] call FUNC(facepaint_canApply));
+					condition = QUOTE(ARR_1(_player) call FUNC(facepaint_canApply));
 				//    exceptions[] = {};
-					statement = QUOTE(ARR_3(_player, 'ace_field_rations_drinkFromSourceHigh', 1) call ace_common_fnc_doAnimation; ARR_5(11, [_player], {_this select 0 call RAA_misc_fnc_facepaint}, {}, 'Applying Face Paint') call ace_common_fnc_progressBar);
+					statement = QUOTE(ARR_3(_player, 'ace_field_rations_drinkFromSourceHigh', 1) call ace_common_fnc_doAnimation; ARR_5(11, ARR_1(_player), {_this select 0 call RAA_misc_fnc_facepaint}, {}, 'Applying Face Paint') call ace_common_fnc_progressBar);
 				//	icon = QPATHTOF(pics\facepaint_icon);
 					icon = QPATHTOF(pics\facepaint_icon.paa);
 				};
@@ -20,7 +20,7 @@ class CfgVehicles {
 					displayName = "Wash away face camouflage paint";
 					condition = "(face _player) isEqualTo (_player getVariable ['RAA_misc_facepaint_faces', []] param [1, ''])";
 				//    exceptions[] = {};
-					statement = QUOTE(ARR_3(_player, 'ace_field_rations_drinkFromSourceHigh', 1) call ace_common_fnc_doAnimation; ARR_5(11, [_player], {_this select 0 call RAA_misc_fnc_facepaint}, {}, 'Washing off Face Paint') call ace_common_fnc_progressBar);
+					statement = QUOTE(ARR_3(_player, 'ace_field_rations_drinkFromSourceHigh', 1) call ace_common_fnc_doAnimation; ARR_5(11, ARR_1(_player), {_this select 0 call RAA_misc_fnc_facepaint}, {}, 'Washing off Face Paint') call ace_common_fnc_progressBar);
 					icon = QPATHTOF(pics\facepaint_icon.paa);
 				};
 				

@@ -66,7 +66,7 @@ _consumeText = format [_consumeText, _displayName];
 private _stanceIndex = ["STAND", "CROUCH", "PRONE"] find stance _player;
 
 // Handle in vehicle when stance is UNDEFINED
-if (vehicle _player != _player) then {_stanceIndex = 0};
+if (isNull objectParent _player) then {_stanceIndex = 0};
 
 private _consumeAnim = getArray (_config >> "acex_field_rations_consumeAnims") param [_stanceIndex, "", [""]];
 private _consumeSound = getArray (_config >> "acex_field_rations_consumeSounds") param [_stanceIndex, "", [""]];
@@ -146,7 +146,7 @@ private _fnc_onFailure = {
 	if (GVAR(debug)) then {systemChat format ["[RAA_beltSlot] Consume item failed %1", _args];};
 
     // Reset animation if needed
-    if (vehicle _player == _player && {!(_player call ace_common_fnc_isSwimming)}) then {
+    if (isNull objectParent _player && {!(_player call ace_common_fnc_isSwimming)}) then {
         private _previousAnim = _player getVariable ["ace_field_rations_previousAnim", ""];
         if (_previousAnim != "") then {
             [_player, _previousAnim, 2] call ace_common_fnc_doAnimation;

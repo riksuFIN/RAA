@@ -9,12 +9,17 @@ class CfgPatches
 		requiredVersion = REQUIRED_VERSION;
 		VERSION_CONFIG;
 		units[] = {	// Classes from cfgVehicles
-			"RAA_unfinished_ied_item",
-			"RAA_facepaint_item",
-			"RAA_sound_axe_01"
 		};
 		weapons[] = {	// Classes from cfgWeapons
-			"RAA_facepaint"
+			"RAA_PRC152_broken",
+			"RAA_PPRC77_broken",
+			"RAA_PRC117F_broken",
+			"RAA_PRC148_broken",
+			"RAA_PRC343_broken",
+			"RAA_SEM52SL_broken",
+			"RAA_SEM70_broken",
+			"RAA_BF888S_broken",
+			"RAA_PPRC77_broken"
 		};
 
 		requiredAddons[] = {

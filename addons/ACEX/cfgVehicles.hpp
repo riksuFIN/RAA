@@ -111,7 +111,7 @@ class cfgVehicles {
 		displayName = "Bottle (Alcohol)";
 		author = "riksuFIN";
 		vehicleClass = "Items";
-		editorPreview = QPATHTOF(pics\brown_bottle_ca.png);		// TODO: replace this with proper pic
+		editorPreview = QPATHTOF(pics\brown_bottle_ca.paa);		// TODO: replace this with proper pic
 		class TransportItems {
 			class xx_RAA_bottle_whiskey {
 				name = "RAA_bottle_genericAlcohol";
@@ -170,21 +170,6 @@ class cfgVehicles {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// Sitable objects
 	class Furniture_Residental_base_F;
 	class Land_Sofa_01_F: Furniture_Residental_base_F {
@@ -200,11 +185,6 @@ class cfgVehicles {
 		ace_dragging_dragPosition[] = {0, 1, 0};
 		ace_dragging_dragDirection = 0;
 	};
-	
-	
-	
-	
-	
 	
 	
 	

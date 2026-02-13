@@ -1,15 +1,16 @@
 61||61||49||70||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/misc/XEH_PostInit.sqf
-32||32||5||12||notice||Undefined variable `_player`||undefined variable||/addons/misc/functions/fnc_DoChopDownTree.sqf
 32||32||5||21||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/misc/functions/fnc_canChopDownTree.sqf
-57||57||29||40||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-58||58||10||18||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-59||59||10||20||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-72||72||28||39||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-73||73||9||17||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-74||74||9||19||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-104||104||21||32||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-105||105||10||18||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
-106||106||10||20||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+32||32||5||12||notice||Undefined variable `_player`||undefined variable||/addons/misc/functions/fnc_DoChopDownTree.sqf
+47||47||29||40||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+48||48||10||18||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+49||49||10||20||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+62||62||28||39||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+63||63||9||17||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+64||64||9||19||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+94||94||21||32||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+95||95||10||18||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+96||96||10||20||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/XEH_preInit.sqf
+15||15||7||12||notice||`Spawn` does not match the wiki's case||non-standard command case||/addons/ACEA/functions/fnc_arsenal_overview_update.sqf
 24||24||8||16||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/functions/fnc_arsenal_description.sqf
 25||25||8||18||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/functions/fnc_arsenal_description.sqf
 32||32||8||16||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/functions/fnc_arsenal_description.sqf
@@ -17,37 +18,36 @@
 35||35||8||16||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/ACEA/functions/fnc_arsenal_description.sqf
 43||43||8||18||notice||`ctrlcommit` does not match the wiki's case||non-standard command case||/addons/ACEA/functions/fnc_arsenal_description.sqf
 72||72||5||21||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/ACEA/functions/fnc_arsenal_overview_getInventoryItems.sqf
-15||15||7||12||notice||`Spawn` does not match the wiki's case||non-standard command case||/addons/ACEA/functions/fnc_arsenal_overview_update.sqf
-48||48||43||51||notice||`ASLtoAGL` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_handleDialog_doArtilleryFire.sqf
-75||75||45||53||notice||`ASLtoAGL` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_handleDialog_doArtilleryFire.sqf
-83||83||33||41||notice||`ASLtoAGL` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_handleDialog_doArtilleryFire.sqf
-44||44||6||7||notice||Unneeded Not||unneeded not||/addons/zeus/functions/fnc_remoteControl_getChildrens.sqf
+32||32||26||35||notice||`MarkerDir` does not match the wiki's case||non-standard command case||/addons/zeus/scripts/fixMapMarkers.sqf
+48||48||26||35||notice||`MarkerDir` does not match the wiki's case||non-standard command case||/addons/zeus/scripts/fixMapMarkers.sqf
+21||21||7||43||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/scripts/createZeusModules_animScreen.sqf
+170||170||7||43||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/scripts/createZeusModules_animScreen.sqf
+529||529||6||44||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/scripts/createZeusModules.sqf
 27||27||63||68||notice||Undefined variable `_unit`||undefined variable||/addons/zeus/functions/fnc_playSound.sqf
 27||27||70||79||notice||Undefined variable `_distance`||undefined variable||/addons/zeus/functions/fnc_playSound.sqf
 27||27||81||90||notice||Undefined variable `_distance`||undefined variable||/addons/zeus/functions/fnc_playSound.sqf
 27||27||102||111||notice||Undefined variable `_distance`||undefined variable||/addons/zeus/functions/fnc_playSound.sqf
+44||44||6||7||notice||Unneeded Not||unneeded not||/addons/zeus/functions/fnc_remoteControl_getChildrens.sqf
 51||51||7||13||notice||`BLUFOR` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_fortification_fillPresetsList.sqf
 51||51||14||19||notice||`OPFOR` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_fortification_fillPresetsList.sqf
 51||51||20||31||notice||`INDEPENDENT` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_fortification_fillPresetsList.sqf
 51||51||32||40||notice||`CIVILIAN` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_fortification_fillPresetsList.sqf
 32||32||6||24||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/functions/fnc_module_copyTerrainObject.sqf
+48||48||43||51||notice||`ASLtoAGL` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_handleDialog_doArtilleryFire.sqf
+75||75||45||53||notice||`ASLtoAGL` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_handleDialog_doArtilleryFire.sqf
+83||83||33||41||notice||`ASLtoAGL` does not match the wiki's case||non-standard command case||/addons/zeus/functions/fnc_handleDialog_doArtilleryFire.sqf
 22||22||13||20||notice||Undefined variable `_object`||undefined variable||/addons/zeus/functions/intel/fnc_intel_dialogCreate_edit.sqf
 23||23||31||38||notice||Undefined variable `_object`||undefined variable||/addons/zeus/functions/intel/fnc_intel_dialogCreate_edit.sqf
 23||23||49||56||notice||Undefined variable `_object`||undefined variable||/addons/zeus/functions/intel/fnc_intel_dialogCreate_edit.sqf
 70||70||53||60||notice||Undefined variable `_object`||undefined variable||/addons/zeus/functions/intel/fnc_intel_dialogCreate_edit.sqf
 23||23||7||43||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/functions/intel/fnc_intel_dialogCreate_edit.sqf
-61||61||4||5||notice||Unneeded Not||unneeded not||/addons/zeus/functions/intel/fnc_intel_dialogHandle_new.sqf
 24||24||7||43||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/functions/intel/fnc_intel_dialogCreate_new.sqf
-529||529||6||44||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/scripts/createZeusModules.sqf
-32||32||26||35||notice||`MarkerDir` does not match the wiki's case||non-standard command case||/addons/zeus/scripts/fixMapMarkers.sqf
-48||48||26||35||notice||`MarkerDir` does not match the wiki's case||non-standard command case||/addons/zeus/scripts/fixMapMarkers.sqf
-21||21||7||43||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/scripts/createZeusModules_animScreen.sqf
-170||170||7||43||notice||Unoptimized `count` array comparison||unoptimized comparison||/addons/zeus/scripts/createZeusModules_animScreen.sqf
+61||61||4||5||notice||Unneeded Not||unneeded not||/addons/zeus/functions/intel/fnc_intel_dialogHandle_new.sqf
+71||71||5||10||notice||Undefined variable `_unit`||undefined variable||/addons/ACEX/functions/fnc_handleItemConsumptionEffects.sqf
+84||84||5||10||notice||Undefined variable `_unit`||undefined variable||/addons/ACEX/functions/fnc_handleItemConsumptionEffects.sqf
 15||15||28||35||notice||Undefined variable `_player`||undefined variable||/addons/ACEX/functions/fnc_canFillBottle_groundWater.sqf
 23||23||25||32||notice||Undefined variable `_player`||undefined variable||/addons/ACEX/functions/fnc_canFillBottle_groundWater.sqf
 133||133||44||54||notice||Undefined variable `_safestart`||undefined variable||/addons/ACEX/functions/fnc_effect_drunk.sqf
-71||71||5||10||notice||Undefined variable `_unit`||undefined variable||/addons/ACEX/functions/fnc_handleItemConsumptionEffects.sqf
-84||84||5||10||notice||Undefined variable `_unit`||undefined variable||/addons/ACEX/functions/fnc_handleItemConsumptionEffects.sqf
 36||36||6||7||notice||Unneeded Not||unneeded not||/addons/beltSlot/functions/fnc_beltSlot_getDrinkableChildrens.sqf
 17||17||4||9||notice||`Spawn` does not match the wiki's case||non-standard command case||/addons/beltSlot/functions/fnc_beltSlot_onInventoryOpened.sqf
 46||46||9||17||notice||`ctrlshow` does not match the wiki's case||non-standard command case||/addons/beltSlot/functions/fnc_beltSlot_onInventoryOpened.sqf
@@ -58,10 +58,10 @@
 31||31||98||106||notice||Undefined variable `_patient`||undefined variable||/addons/medical/functions/fnc_deployAED.sqf
 86||86||2||18||notice||`profileNameSpace` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_doSave_client.sqf
 148||148||3||19||notice||`profileNameSpace` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_doSave_client.sqf
-243||243||1||17||notice||`profileNameSpace` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_doSave.sqf
+28||28||24||35||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_blacklist.sqf
 27||27||3||19||notice||`profileNameSpace` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_clear_saveData.sqf
 28||28||3||19||notice||`profileNameSpace` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_clear_saveData.sqf
-28||28||24||35||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_blacklist.sqf
+243||243||1||17||notice||`profileNameSpace` does not match the wiki's case||non-standard command case||/addons/saveLoad/functions/fnc_doSave.sqf
 45||45||5||10||notice||Undefined variable `_unit`||undefined variable||/addons/UMI_additions/functions/fnc_handleItemConsumptionEffects.sqf
 171||171||83||85||notice||Undefined variable `_x`||undefined variable||/addons/firesupport_additions/functions/fnc_handleDialog_editGun.sqf
 175||175||136||142||notice||Undefined variable `_index`||undefined variable||/addons/firesupport_additions/functions/fnc_handleDialog_editGun.sqf
@@ -71,15 +71,15 @@
 15||15||38||39||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 15||15||79||80||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 15||15||125||126||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
-15||15||136||137||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
-15||15||182||183||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
-15||15||186||187||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
+15||15||141||142||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
+15||15||187||188||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
+15||15||191||192||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 23||23||38||39||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 23||23||79||80||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 23||23||125||126||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
-23||23||136||137||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
-23||23||182||183||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
-23||23||186||187||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
+23||23||141||142||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
+23||23||187||188||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
+23||23||191||192||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 31||31||37||38||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 34||34||37||38||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
 41||41||37||38||warning||padding a macro argument||padding a macro argument||/addons/misc/cfgVehicles.hpp
@@ -119,7 +119,6 @@
 351||351||8||28||warning||Public CfgWeapons class `raa_thermos_tea_half` not listed in CfgPatches||not in weapons[]||/addons/ACEX/cfgWeapons.hpp
 366||366||8||26||warning||Public CfgWeapons class `raa_thermos_coffee` not listed in CfgPatches||not in weapons[]||/addons/ACEX/cfgWeapons.hpp
 378||378||8||31||warning||Public CfgWeapons class `raa_thermos_coffee_half` not listed in CfgPatches||not in weapons[]||/addons/ACEX/cfgWeapons.hpp
-114||114||49||52||warning||a property that references a file has an unusual file type||unusual file type||/addons/ACEX/cfgVehicles.hpp
 14||14||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
 22||22||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
 32||32||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
@@ -135,8 +134,8 @@
 166||166||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
 186||186||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
 298||298||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
+405||405||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
 419||419||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
-433||433||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/ACEX/cfgWeapons.hpp
 31||31||44||45||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/cfgVehicles.hpp
 45||45||34||35||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/cfgVehicles.hpp
 45||45||46||47||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/cfgVehicles.hpp
@@ -154,26 +153,18 @@
 43||43||77||78||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
 43||43||84||85||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
 43||43||87||88||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-56||56||54||55||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-56||56||77||78||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-56||56||89||90||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-56||56||92||93||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-60||60||54||55||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-60||60||77||78||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-60||60||89||90||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-60||60||92||93||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-64||64||54||55||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-64||64||77||78||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-64||64||89||90||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-64||64||92||93||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-68||68||54||55||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-68||68||77||78||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-68||68||89||90||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-68||68||92||93||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
-55||55||8||20||warning||Public CfgWeapons class `raa_naloxone` not listed in CfgPatches||not in weapons[]||/addons/medical/cfgWeapons.hpp
-72||72||8||20||warning||Public CfgWeapons class `raa_propofol` not listed in CfgPatches||not in weapons[]||/addons/medical/cfgWeapons.hpp
-93||93||8||25||warning||Public CfgWeapons class `raa_defibrillator` not listed in CfgPatches||not in weapons[]||/addons/medical/cfgWeapons.hpp
-109||109||8||15||warning||Public CfgWeapons class `raa_aed` not listed in CfgPatches||not in weapons[]||/addons/medical/cfgWeapons.hpp
+56||56||76||77||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+56||56||88||89||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+56||56||91||92||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+60||60||76||77||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+60||60||88||89||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+60||60||91||92||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+64||64||76||77||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+64||64||88||89||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+64||64||91||92||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+68||68||76||77||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+68||68||88||89||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
+68||68||91||92||warning||padding a macro argument||padding a macro argument||/addons/beltSlot/RscDisplayInventory.hpp
 78||78||13||13||warning||a property that references a file is missing a file extension||missing file extension||/addons/medical/cfgVehicles.hpp
 73||73||7||29||warning||Public CfgVehicles class `raa_saveload_module_save_main` not listed in CfgPatches||not in units[]||/addons/saveLoad/cfgVehicles.hpp
 282||282||7||49||warning||Public CfgVehicles class `raa_saveload_module_save_additionalsearchlocation` not listed in CfgPatches||not in units[]||/addons/saveLoad/cfgVehicles.hpp
@@ -185,10 +176,8 @@
 579||579||7||36||warning||Public CfgVehicles class `raa_saveload_module_load_vehspawnpos` not listed in CfgPatches||not in units[]||/addons/saveLoad/cfgVehicles.hpp
 3||3||8||25||warning||Public CfgVehicles class `raa_logic_artygun` not listed in CfgPatches||not in units[]||/addons/firesupport_additions/cfgVehicles.hpp
 10||10||8||26||warning||Public CfgVehicles class `raa_logic_artyammo` not listed in CfgPatches||not in units[]||/addons/firesupport_additions/cfgVehicles.hpp
-12||12||4||29||warning||CfgPatches units[] class `raa_unfinished_ied_item` not found||not defined in CfgVehicles||/addons/compact_ACRE/config.cpp
-13||13||4||24||warning||CfgPatches units[] class `raa_facepaint_item` not found||not defined in CfgVehicles||/addons/compact_ACRE/config.cpp
-14||14||4||22||warning||CfgPatches units[] class `raa_sound_axe_01` not found||not defined in CfgVehicles||/addons/compact_ACRE/config.cpp
-17||17||4||19||warning||CfgPatches weapons[] class `raa_facepaint` not found||not defined in CfgWeapons||/addons/compact_ACRE/config.cpp
+17||17||37||38||warning||padding a macro argument||padding a macro argument||/addons/animation/cfgVehicles.hpp
+17||17||41||42||warning||padding a macro argument||padding a macro argument||/addons/animation/cfgVehicles.hpp
 43||43||2||7||warning||Invalid argument type for `[U:lbAdd]`||type not expected||/addons/ACEA/functions/fnc_onMenuOpen_loadoutOverview.sqf
 31||31||43||77||warning||Variable should not be all caps: IDC_GUI_LOADOUTOVERVIEW_LIST_ITEMS||all caps variable||/addons/ACEA/functions/fnc_onMenuOpen_loadoutOverview.sqf
 32||32||43||79||warning||Variable should not be all caps: IDC_GUI_LOADOUTOVERVIEW_LIST_WEAPONS||all caps variable||/addons/ACEA/functions/fnc_onMenuOpen_loadoutOverview.sqf
@@ -199,20 +188,15 @@
 1||1||19||23||warning||Variable should not be all caps: ACEA||all caps variable||/addons/ACEA/script_component.hpp
 106||106||3||12||warning||Variable should not be all caps: ACEA||used in macro here||/addons/ACEA/functions/fnc_tear_fabric.sqf
 1||1||19||23||warning||Variable should not be all caps: ACEA||all caps variable||/addons/ACEA/script_component.hpp
+134||134||16||61||warning||Use configOf instead of typeOf with configFile for variable `_object`||use configOf||/addons/zeus/scripts/createZeusModules_animScreen.sqf
+220||220||16||61||warning||Use configOf instead of typeOf with configFile for variable `_object`||use configOf||/addons/zeus/scripts/createZeusModules_animScreen.sqf
 39||39||28||68||warning||Use configOf instead of typeOf with configFile for variable `_x`||use configOf||/addons/zeus/functions/fnc_remoteControl_getChildrens.sqf
 47||47||88||109||warning||Variable should not be all caps: ACRE_SPOKEN_LANGUAGES||all caps variable||/addons/zeus/functions/fnc_babel_handleDialog_configureSide.sqf
 70||70||15||60||warning||Use configOf instead of typeOf with configFile for variable `_object`||use configOf||/addons/zeus/functions/intel/fnc_intel_dialogCreate_edit.sqf
 53||53||14||59||warning||Use configOf instead of typeOf with configFile for variable `_object`||use configOf||/addons/zeus/functions/intel/fnc_intel_dialogCreate_new.sqf
-134||134||16||61||warning||Use configOf instead of typeOf with configFile for variable `_object`||use configOf||/addons/zeus/scripts/createZeusModules_animScreen.sqf
-220||220||16||61||warning||Use configOf instead of typeOf with configFile for variable `_object`||use configOf||/addons/zeus/scripts/createZeusModules_animScreen.sqf
 59||63||20||6||warning||assignment to if can be replaced with select||use select||/addons/ACEX/functions/fnc_drinkWhileMoving.sqf
-74||74||5||31||warning||Using `vehicle` to check if a unit is in a vehicle is inefficient||inefficient "in vehicle" check||/addons/ACEX/functions/fnc_drinkWhileMoving.sqf
 93||93||60||86||warning||Using `vehicle` to check if a unit is in a vehicle is inefficient||inefficient "not in vehicle" check||/addons/ACEX/functions/fnc_drinkWhileMoving.sqf
-69||69||5||31||warning||Using `vehicle` to check if a unit is in a vehicle is inefficient||inefficient "in vehicle" check||/addons/beltSlot/functions/fnc_beltSlot_doDrinkFromBelt.sqf
 74||74||51||77||warning||Using `vehicle` to check if a unit is in a vehicle is inefficient||inefficient "not in vehicle" check||/addons/beltSlot/functions/fnc_beltSlot_doDrinkFromBelt.sqf
-149||149||9||35||warning||Using `vehicle` to check if a unit is in a vehicle is inefficient||inefficient "not in vehicle" check||/addons/beltSlot/functions/fnc_beltSlot_doDrinkFromBelt.sqf
-31||31||1||21||warning||Invalid argument type for `[B:call]`||type not expected||/addons/beltSlot/functions/fnc_takeFromBelt.sqf
-31||31||27||53||warning||Invalid argument type for `[B:call]`||type not expected||/addons/beltSlot/functions/fnc_takeFromBelt.sqf
 43||43||2||7||warning||Invalid argument type for `[U:lbAdd]`||type not expected||/addons/medical/functions/fnc_onMenuOpen_loadoutOverview.sqf
 31||31||43||77||warning||Variable should not be all caps: IDC_GUI_LOADOUTOVERVIEW_LIST_ITEMS||all caps variable||/addons/medical/functions/fnc_onMenuOpen_loadoutOverview.sqf
 32||32||43||79||warning||Variable should not be all caps: IDC_GUI_LOADOUTOVERVIEW_LIST_WEAPONS||all caps variable||/addons/medical/functions/fnc_onMenuOpen_loadoutOverview.sqf

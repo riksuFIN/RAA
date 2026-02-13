@@ -27,6 +27,8 @@ if (isPlayer _unit || isNull _unit) exitWith {
 
 if (_unit getVariable [QGVAR(AI_spawnWater_skipThis), false]) exitWith {};
 
+if (isNil QGVAR(allConsumeableItems)) exitWith {};
+
 // Spawn couple of consumeable items to inventory
 for "_i" from 0 to (round (random [0,0.4,2])) do {
 	

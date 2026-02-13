@@ -392,20 +392,6 @@ class cfgWeapons
 	
 	
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	// --------- TIN CANS (FOOD)

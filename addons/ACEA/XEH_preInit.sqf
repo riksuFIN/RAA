@@ -10,16 +10,6 @@ PREP_RECOMPILE_END;
 
 ADDON = true;
 
-// CONVERSION_TO_CBA: No need to touch this file
-
-
-
-
-
-
-
-
-
 
 
 // Add EH hooks to detect when arsenal is opened/ closed. Used by inventory overView feature
