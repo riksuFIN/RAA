@@ -1,10 +1,9 @@
 ================ KNOWN BUGS ===================================
-- BeltItems: Drinking half bottle deletes entire bottle
 - ACE Arsenal Overview & Item Description will not hide with rest of interface
 - BeltSlot: After client disconnects from MP server bottles their bottles are removed, even if their body remains to be controlled by AI.
 - BeltSlot: After drag-and-dropping belt items in inventory screen it get stuck in red/white colors. Closing and re-opening inventory fixes this.
-
-
+- BeltSlot: Moving a depleted magazine to belt fills it up.
+- Consumeables are spawned to AI units even with setting disabled
 
 ================ TO DO ===================================
 - Rewrite fieldRation_Warnings
@@ -16,6 +15,22 @@
 	IN PROGRESS: Indicator is now done via config. next step: Add premature hide if Zeus interface is hidden
 
 ================ CHANGE NOTES ===================================
+v2.0.1
+- [misc] Fixed bug where CBA setting for spawning consumeables to AI's was ignored.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 v2.0.0	26.2.2026
 - [ALL] Changed PBO management from Mikero tools to HEMTT
 - [fieldRation_Warnings] Finally updated to new standard. Moved CBA settings from old Motti_Misc to RAA category
@@ -31,7 +46,6 @@ v2.0.0	26.2.2026
 - [beltSlot] Added ability to move helmet directly from belt to head. Also swaps current headgear with item on belt if possible.
 - [beltSlot] Fixed drinking while when drinking from belt will delete entire bottle instead of part of it.
 - [beltSlot] Added potential fix for potential clipping problems related to items on belt
-
 
 
 

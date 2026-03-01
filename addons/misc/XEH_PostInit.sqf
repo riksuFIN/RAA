@@ -45,17 +45,17 @@ if (isServer) then {
 	
 	
 	
-	// spawn water bottles to AI's. 10 seconds delay from spawning to allow everything else do their stuff first
-//	["CAManBase", "init", {[_this select 0] call FUNC(handleAIInit);}, true, [], true] call CBA_fnc_addClassEventHandler;
-	["CAManBase", "init", {
-		[	{
-				[_this select 0] call FUNC(handleAIInit);
-			}, 
-				_this,
-			6
-		] call CBA_fnc_waitAndExecute;
-	}, true, [], true] call CBA_fnc_addClassEventHandler;
-	
+	// spawn water bottles to AI's. Delayed from spawning to allow all other potential scripts to spawn their stuff first.
+	if (QGVAR(AI_spawnWater_enabled)) then {
+		["CAManBase", "init", {
+			[	{
+					[_this select 0] call FUNC(handleAIInit);
+				}, 
+					_this,
+				6
+			] call CBA_fnc_waitAndExecute;
+		}, true, [], true] call CBA_fnc_addClassEventHandler;
+	};
 	
 	if (["RAA_isMotti"] call ace_common_fnc_isModLoaded) then {
 		if (RAA_misc_zafw_timeOutReminder_enabled && allCurators isNotEqualTo []) then {
