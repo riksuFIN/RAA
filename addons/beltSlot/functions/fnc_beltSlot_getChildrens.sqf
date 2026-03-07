@@ -29,7 +29,8 @@ private _cfgWeaponsBase = configFile >> "CfgWeapons";
 private _cfgMagazinesBase = configFile >> "CfgMagazines";
 private _items = +(_unit call ace_common_fnc_uniqueItems);
 _items append magazines _unit;
-_items pushBackUnique headgear _unit;
+if (enabled_headgearAction) then {_items pushBackUnique headgear _unit};
+
 {
 //private _configToSearch = "ItemInfo" >> "mass";
 

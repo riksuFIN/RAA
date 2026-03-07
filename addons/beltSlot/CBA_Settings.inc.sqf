@@ -40,6 +40,14 @@
 	true, // data for this setting (Default value)
 	0 // "_isGlobal" flag.
 ] call CBA_fnc_addSetting;
+[
+    QGVAR(enabled_headgearAction),
+    "CHECKBOX",
+    ["Enable Move Headgear Action", "Enables 'Move to belt' and 'Move to head' actions for headgear in ACE Self-Actions menu.\nHeadgear can still be moved to belt via inventory regardless of this setting."],
+    ["RAA", "Belt Slot"],
+    true, // Default value
+    0 // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
 
 [
     QGVAR(autoMoveBottlesToBelt), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
@@ -49,6 +57,7 @@
     true, // data for this setting (Default value)
     0 // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer
 ] call CBA_fnc_addSetting;
+
 
 [	
     QGVAR(debug), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.

@@ -40,7 +40,7 @@ class CfgVehicles {
 
 					class RAA_beltSlot_moveToHead {
 						displayName = "Move to head";
-						condition = QUOTE(_player getVariable [ARR_2(QQGVAR(data),[])] param [ARR_2(0,[])] param [ARR_2(6,0)] isEqualTo 605);
+						condition = QUOTE(GVAR(enabled_headgearAction) && {_player getVariable [ARR_2(QQGVAR(data),[])] param [ARR_2(0,[])] param [ARR_2(6,0)] isEqualTo 605});
 						statement = QUOTE([ARR_3(0,_player,3)] call FUNC(beltSlot_doMoveFrombelt));
 						icon = "";
 					};
@@ -72,7 +72,7 @@ class CfgVehicles {
 
 					class RAA_beltSlot_moveToHead {
 						displayName = "Move to head";
-						condition = QUOTE(_player getVariable [ARR_2(QQGVAR(data),[])] param [ARR_2(1,[])] param [ARR_2(6,0)] isEqualTo 605);
+						condition = QUOTE(GVAR(enabled_headgearAction) && {_player getVariable [ARR_2(QQGVAR(data),[])] param [ARR_2(1,[])] param [ARR_2(6,0)] isEqualTo 605});
 						statement = QUOTE([ARR_3(1,_player,3)] call FUNC(beltSlot_doMoveFrombelt));
 						icon = "";
 					};
