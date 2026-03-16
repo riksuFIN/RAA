@@ -8,5 +8,6 @@ That's what this mod is.
 
 
 ## Features are documented in [Trello](https://trello.com/b/C58Mb1HV)
+[Link to Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3008701827)
 
 Mod is built with [HEMMT](https://hemtt.dev/index.html)
