@@ -21,7 +21,7 @@ class RscDisplayInventory {
 			colorSelectBackground[] = {1,1,1,0.1};
 			rowHeight = "1.75 * (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 			tooltip = "Use ACE Action Menu to swap these items";
-		//	onLBDrop = "systemChat str _this; RAA_debug1 = _this";
+		//	onLBDrop = "systemChat str _this; RAA_debug1 = _this; systemChat str gearSlotData (_this select 0)";
 			onLBDrop = QUOTE([ARR_6(nil,ACE_player,_this select 4 select 0 select 2,false,0,_this select 3)] call FUNC(beltSlot_doMoveToBelt));
 		//	onLBDrag = "systemChat str _this; RAA_debug2 = _this";
 			canDrag = 1;

@@ -46,7 +46,7 @@ if (isServer) then {
 	
 	
 	// spawn water bottles to AI's. Delayed from spawning to allow all other potential scripts to spawn their stuff first.
-	if (QGVAR(AI_spawnWater_enabled)) then {
+	if (GVAR(AI_spawnWater_enabled)) then {
 		["CAManBase", "init", {
 			[	{
 					[_this select 0] call FUNC(handleAIInit);
