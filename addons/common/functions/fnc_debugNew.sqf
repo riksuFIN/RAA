@@ -11,7 +11,7 @@
  *
  * Example(s):	
 */
-params [["_module", "Common"], ["_debug", false], ["_priority_text", "INFO"], ["_text", ""], ["_overrides", []]];
+params [["_module", "Common"], ["_debug", false], ["_priority_text", "INFO", [""]], ["_text", ""], ["_overrides", []]];
 
 // We don't run debugs if it's not critical or debugs are not enabled by client
 if (!_debug && (_priority_text isNotEqualTo "ERROR")) exitWith {};
