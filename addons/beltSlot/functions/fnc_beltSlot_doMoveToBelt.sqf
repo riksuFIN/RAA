@@ -11,7 +11,8 @@
  2: Item classname <STRING>
  3: Ignore inventory <BOOL, default false>	If true, enables spawning new item directly to belt without having them in inventory
  4: Desired slot <INT, default -1>	If undefined (-1) will automatically select first free slot
- 5: Source <Default: -1>
+ 5: Source <INT, Default: -1>
+ 6: Magazine Ammo Count <INT, default: -1>
  *
  Returns: Success <BOOL>
  *
@@ -19,9 +20,9 @@
  		["", player, "ATMine_Range_Mag"] call RAA_beltSlot_fnc_beltSlot_doMoveToBelt	// Move existing item from inventory to belt
 		["", this, "ACE_canteen", true] call RAA_beltSlot_fnc_beltSlot_doMoveToBelt		// Spawn new item directly to belt if there's free slot. Place to unit's init
 */
-params ["", ["_unit", objNull], ["_classname", ""], ["_ignoreInventory", false], ["_slotToUse", -1], ["_source", -1]];
+params ["", ["_unit", objNull], ["_classname", ""], ["_ignoreInventory", false], ["_slotToUse", -1], ["_source", -1], ["_ammoCount", -1]];
 
-//[COMPNAME, true, "LOG", format ["Params %1", _this]] call EFUNC(common,debugNew);
+[COMPNAME, true, "LOG", format ["Params %1", _this]] call EFUNC(common,debugNew);
 
 if !(local _unit) exitWith {
 	[COMPNAME, true, "LOG", format ["doMoveToBelt: Failed to move to belt: %1 is not local", _unit]] call EFUNC(common,debugNew);
@@ -291,7 +292,7 @@ if (_kindOf isEqualTo 1 || _kindOf isEqualTo 3) then {
 // [[SLOT1_CLASSNAME, SLOT1_PICPATH, SLOT1_ITEMNAME, SLOT1_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE], [SLOT2_CLASSNAME, SLOT2_PICPATH, SLOT2_ITEMNAME, SLOT2_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE]]
 
 // Save all this trash so we can find it again
-_beltSlots set [_slotToUse, [_classname, _picture, _displayName, _object, _weight, _canDrink, _itemTypeCfg]];
+_beltSlots set [_slotToUse, [_classname, _picture, _displayName, _object, _weight, _canDrink, _itemTypeCfg, _ammoCount]];
 _unit setVariable [QGVAR(data), _beltSlots, true];
 
 // Add mass of item to player as virtual mass

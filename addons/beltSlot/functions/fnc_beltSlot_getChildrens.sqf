@@ -16,10 +16,6 @@
  *
  * Example:	[player] call RAA_misc_fnc_beltSlot_getChildrens
 */
-/*
-Result:
-0.0997 ms
-*/
 
 params [["_unit", ACE_player]];
 
@@ -28,24 +24,19 @@ private _actions = [];
 private _cfgWeaponsBase = configFile >> "CfgWeapons";
 private _cfgMagazinesBase = configFile >> "CfgMagazines";
 private _items = +(_unit call ace_common_fnc_uniqueItems);
-_items append magazines _unit;
+//_items append magazines _unit;
+if (GVAR(enabled_headgearAction)) then {_items pushBackUnique headgear _unit};
+//_items append magazines _unit;
 if (enabled_headgearAction) then {_items pushBackUnique headgear _unit};
 
 {
-//private _configToSearch = "ItemInfo" >> "mass";
-
-// Filter out too small items to avoid cluttering menu
-
-
-private _cfgWeapons = _cfgWeaponsBase >> _x;
-private _cfgMagazines = _cfgMagazinesBase >> _x;
-private _config = _cfgWeapons;
+	// Handle general items
+	private _cfgWeapons = _cfgWeaponsBase >> _x;
+	private _cfgMagazines = _cfgMagazinesBase >> _x;
+	private _config = _cfgWeapons;
 	
 	if ((getNumber (_cfgWeapons >> "ItemInfo" >> "mass")) > 22 || (getNumber (_cfgWeapons >> "acex_field_rations_thirstQuenched")) > 0 || {(getNumber (_cfgMagazines >> "mass")) > 22}) then {
 		
-				//	if (getNumber (_config >> "mass")) > 22) then {
-		
-		// getNumber (configFile >> "CfgWeapons" >> _cfgWeapons >> "ACE_tourniquet" >> "ItemInfo" >> "mass")
 		if ((getNumber (_cfgMagazines >> "mass")) > 0) then {
 			_config = _cfgMagazines;
 		} else {
@@ -55,13 +46,32 @@ private _config = _cfgWeapons;
 		private _displayName = getText (_config >> "displayName");
 		private _picture = getText (_config >> "picture");
 		
-		private _action = [_x, _displayName, _picture, {_this call FUNC(beltSlot_doMoveToBelt)}, {true}, {}, _x] call ace_interact_menu_fnc_createAction;
+		private _action = [_x, _displayName, _picture, {["", _player, (_this select 2)] call FUNC(beltSlot_doMoveToBelt)}, {true}, {}, _x] call ace_interact_menu_fnc_createAction;
 		_actions pushBack [_action, [], _unit];
-		
 		
 	};
 	
 } forEach _items;
+
+
+// Handle magazines
+{
+	_x params ["_classname", "_ammoCount", "_isLoaded", "_type", "_location"];
+	private _cfgMagazines = _cfgMagazinesBase >> _classname;
+	if (!_isLoaded && (getNumber (_cfgMagazines >> "mass")) > 22) then {
+		
+		private _displayName = getText (_cfgMagazines >> "displayName");
+		private _picture = getText (_cfgMagazines >> "picture");
+		
+		private _action = [_classname, format ["%1 (%2)", _displayName, _ammoCount], _picture, {["", _player, (_this select 2 select 0)] call FUNC(beltSlot_doMoveToBelt); systemChat str _this;}, {true}, {}, [_classname, false, -1, _ammoCount]] call ace_interact_menu_fnc_createAction;
+		_actions pushBack [_action, [], _unit];
+
+	};
+
+} forEach magazinesAmmoFull _unit;
+
+
+
 
 
 _actions

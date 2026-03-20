@@ -54,6 +54,7 @@ private _classname = _beltData param [0, ""];
 private _object = _beltData param [3, objNull];
 private _weight = _beltData param [4, 0];
 private _itemType = _beltData param [6, 0];
+private _ammoCount = _beltData param [7, -1];
 
 
 // Check if there's enough space in inventory
@@ -90,23 +91,26 @@ if (_container isEqualTo 3) then {
 	};
 } else {
 	
-	// Add item to unit's inventory
-	switch (_container) do {
-		case (0): {_unit addItemToUniform _classname};
-		case (1): {_unit addItemToVest _classname};
-		case (2): {_unit addItemToBackpack _classname};
-		case (9): {	// External container
-			private _container = _unit getVariable [QGVAR(beltSlot_openedContainer), objNull];
-			if (isNull _container) then {
-				_container = createVehicle ["GroundWeaponHolder", position _unit, [], 0, "CAN_COLLIDE"];
-				_unit setVariable [QGVAR(beltSlot_openedContainer), _container];
+//	if (_ammoCount => 0) then {
+//		_unit addMagazine [_className, _ammoCount];
+		// Add item to unit's inventory
+		switch (_container) do {
+			case (0): {if (_ammoCount => 0) then {_unit addMagazine [_className, _ammoCount]} else {_unit addItemToUniform _classname}};
+			case (1): {if (_ammoCount => 0) then {_unit addMagazine [_className, _ammoCount]} else {_unit addItemToVest _classname}};
+			case (2): {if (_ammoCount => 0) then {_unit addMagazine [_className, _ammoCount]} else {_unit addItemToBackpack _classname}};
+			case (9): {	// External container
+				private _container = _unit getVariable [QGVAR(beltSlot_openedContainer), objNull];
+				if (isNull _container) then {
+					_container = createVehicle ["GroundWeaponHolder", position _unit, [], 0, "CAN_COLLIDE"];
+					_unit setVariable [QGVAR(beltSlot_openedContainer), _container];
+				};
+					if (_ammoCount => 0) then {_container addMagazineAmmoCargo [_className, 1, _ammoCount];} else {
+						private _success = [_container, _classname, 1, true] call CBA_fnc_addItemCargo;				// TODO NOTE: CBA_fnc_addItemCargo is bad fnc! Replace with something better if possible!
+						if (GVAR(debug)) then {systemChat format ["[RAA_beltSlot] Added %1 to %2. Success: %3", _classname, _container, _success];};
+					};
 			};
-			//	_container addItemCargoGlobal [_classname, 1];
-				private _success = [_container, _classname, 1, true] call CBA_fnc_addItemCargo;										// TODO NOTE: CBA_fnc_addItemCargo is really bad fnc! Replace with something better if possible!
-				if (GVAR(debug)) then {systemChat format ["[RAA_beltSlot] Added %1 to %2. Success: %3", _classname, _container, _success];};
+			default {_unit addItem _classname};
 		};
-		default {_unit addItem _classname};
-	};
 };
 
 if (_exit) exitWith {false};
