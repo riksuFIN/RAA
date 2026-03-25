@@ -171,7 +171,7 @@ if (_ignoreInventory) then {
 			case ("Equipment");
 			case ("Item"): {if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeItem} else {_success = [_container, _classname] call CBA_fnc_removeItemCargo}};
 			case ("Magazine");
-			case ("Mine"): {if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeMagazine} else {_success = [_container, _classname] call CBA_fnc_removeMagazineCargo}};
+			case ("Mine"): {if (_isHuman) then {_success = [_container, _classname, _ammoCount] call CBA_fnc_removeMagazine} else {_success = [_container, _classname, 1, _ammoCount] call CBA_fnc_removeMagazineCargo}};
 			case ("Weapon"): {if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeWeapon} else {_success = [_container, _classname] call CBA_fnc_removeWeaponCargo}};
 		};
 	};
@@ -274,6 +274,9 @@ if (_slotToUse isEqualTo 0) then {
 
 // Get remaining info we need
 private _displayName = getText (_config >> "displayName");
+	if (_ammoCount >= 0) then {
+		_displayName = format ["%1 (%2)", _displayName, _ammoCount];
+	};
 private _picture = getText (_config >> "picture");
 private _canDrink = (getNumber (_config >> "acex_field_rations_thirstQuenched")) > 0;
 private _itemTypeCfg = getNumber (configFile >> "CfgWeapons" >> _className >> "ItemInfo" >> "type");

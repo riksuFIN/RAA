@@ -28,12 +28,10 @@
 		// Add beltSlots
 		for "_i" from 0 to BELTSLOT_NUMBEROFSLOTS do {
 			private _ctrl = _display displayCtrl ([IDC_RAA_BELTSLOT_SLOT1, IDC_RAA_BELTSLOT_SLOT2] select _i);
-			private _image = (_beltSlots param [_i, []]) param [1, ""];
-			private _ammoCount = (_beltSlots param [_i, []]) param [7, -1];
-			private _text = (_beltSlots param [_i, []]) param [2, ""];
-			if (_ammoCount => 0) then {
-				private _text = format ["%1 (%2)", (_beltSlots param [_i, []]) param [2, ""], _ammoCount];
-			};
+			private _image = _beltSlots param [_i, []] param [1, ""];
+			private _ammoCount = _beltSlots param [_i, []] param [7, -1];
+			private _text = _beltSlots param [_i, []] param [2, ""];
+			[COMPNAME, GVAR(debug), "INFO", format ["AmmoC: %1, params: %2", _ammoCount, param [_i, []]]] call EFUNC(common,debugNew);
 			
 			lbClear _ctrl;
 			

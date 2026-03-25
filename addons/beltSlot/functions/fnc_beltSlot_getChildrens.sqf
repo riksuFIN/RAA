@@ -63,7 +63,7 @@ if (enabled_headgearAction) then {_items pushBackUnique headgear _unit};
 		private _displayName = getText (_cfgMagazines >> "displayName");
 		private _picture = getText (_cfgMagazines >> "picture");
 		
-		private _action = [_classname, format ["%1 (%2)", _displayName, _ammoCount], _picture, {["", _player, (_this select 2 select 0)] call FUNC(beltSlot_doMoveToBelt); systemChat str _this;}, {true}, {}, [_classname, false, -1, _ammoCount]] call ace_interact_menu_fnc_createAction;
+		private _action = [_classname, format ["%1 (%2)", _displayName, _ammoCount], _picture, {["", _player, (_this select 2 select 0), false, -1, -1, (_this select 2 select 1)] call FUNC(beltSlot_doMoveToBelt);}, {true}, {}, [_classname, _ammoCount]] call ace_interact_menu_fnc_createAction;
 		_actions pushBack [_action, [], _unit];
 
 	};
