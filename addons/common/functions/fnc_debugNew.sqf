@@ -23,7 +23,9 @@ switch (_priority_text) do {
 	case ("ERROR"): {_log = true; _chat = true; _hint = true};
 	case ("WARNING"): {_log = true; _chat = true};
 	case ("WARNING_G"): {_log = true; _chat = true; _broadcast = true;};
+	case ("DEBUG"): {_chat = true;};
 	case ("LOG"): {_log = true;};
+	case ("HINT"): {_chat = false; _hint = true;};
 	case ("INFO");
 	case ("NOTE"): {_chat = true};
 	case ("ERROR_G"): {_log = true; _chat = true; _broadcast = true};

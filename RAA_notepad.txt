@@ -18,10 +18,9 @@
 v2.0.1
 - [misc] Fixed bug where CBA setting for spawning consumeables to AI's was ignored.
 - [BeltSlot] Added CBA setting to enable/ disable ACE action to move headgear between belt and head.
-- [beltSlot] Added support for saving magazine's ammo count on belt
-
-	TODO: Test half mags on belt, might be buggy!
-	DODO finish handling their spawning. Ammo count is not yet saved to belt data
+- [beltSlot] Added support for saving magazine's ammo count on belt.
+				For now ammo count is only saved when moved to belt via ACE menu. Drag-and-drop inventory does not save ammo count (technical difficulty)
+				Moving from belt to inventory fully supports both ways (ACE menu and drag-and-drop).
 
 
 
