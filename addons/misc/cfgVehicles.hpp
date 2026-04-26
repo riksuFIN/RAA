@@ -240,7 +240,7 @@ class CfgVehicles {
 					condition = "alive _target && !(_target getVariable [QQGVAR(radioPower), false])";
 					exceptions[] = {};
 				//	statement = "[_this, 1] call FUNC(handleRadioAction)";
-					statement = "[_this, 1] remoteExec [QQFUNC(handleRadioAction), 2]";
+					statement = QUOTE([ARR_2(_this,1)] remoteExec [ARR_2(QQFUNC(handleRadioAction),2)]);
 				//	modifierFunction = "";
 				//	icon = "\z\dance.paa";
 					distance = 3;
@@ -251,7 +251,7 @@ class CfgVehicles {
 					condition = "alive _target && (_target getVariable [QQGVAR(radioPower), false])";
 					exceptions[] = {};
 				//	statement = "[_this, 0] call FUNC(handleRadioAction)";
-					statement = "[_this, 0] remoteExec [QQFUNC(handleRadioAction), 2]";
+					statement = QUOTE([ARR_2(_this,0)] remoteExec [ARR_2(QQFUNC(handleRadioAction),2)]);
 				//	modifierFunction = "";
 				//	icon = "\z\dance.paa";
 					distance = 3;
@@ -261,7 +261,7 @@ class CfgVehicles {
 						condition = "true";
 						exceptions[] = {};
 					//	statement = "[_this, 2] call FUNC(handleRadioAction));
-						statement = "[_this, 2] remoteExec [QQFUNC(handleRadioAction), 2]";
+						statement = QUOTE([ARR_2(_this,2)] remoteExec [ARR_2(QQFUNC(handleRadioAction),2)]);
 					//	modifierFunction = "";
 					//	icon = "\z\dance.paa";
 						distance = 3;
