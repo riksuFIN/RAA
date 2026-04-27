@@ -95,8 +95,9 @@ class GVAR(console) {
 					font = FONT;
 					text = ">TestLine. This should never be visible!";
 				//	onLoad = QFUNC(onConsoleOpen);
-					onCommitted = QUOTE(displayCtrl IDC_FEEDBOX_GROUP ctrlSetScrollValues [ARR_2(1,1)]; systemChat str _this);
-				//	onCommitted = QUOTE(_this select 0 ctrlSetScrollValues [ARR_2(1,1)]; systemChat str _this);
+				//	onCommitted = QUOTE(displayCtrl IDC_FEEDBOX_GROUP ctrlSetScrollValues [ARR_2(1,1)]; systemChat str _this);
+				//	onCommitted = QUOTE([ARR_2({_this ctrlSetScrollValues [ARR_2(1,1)]; systemChat str _this},displayCtrl IDC_FEEDBOX_GROUP)] call CBA_fnc_execNextFrame);
+					onCommitted = QUOTE([ARR_3({_this ctrlSetScrollValues [ARR_2(1,1)]},displayCtrl IDC_FEEDBOX_GROUP,0.2)] call CBA_fnc_waitAndExecute);
 				};
 			};
 		};

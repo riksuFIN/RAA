@@ -32,29 +32,39 @@ switch (_key) do {
 		if (_password isNotEqualTo false) then {
 
 			// Password challenge is currently running
-			if (_inputText isEqualTo _password || _inputText isEqualTo (GVAR(currentConsoleObject) getVariable [QGVAR(sudo), false])) then {
+			// Check password
+			private _sudoSuccess = _inputText isEqualTo (GVAR(currentConsoleObject) getVariable [QGVAR(sudo), false]);
+			if (_inputText isEqualTo _password || _sudoSuccess) then {
+				// Password was corrrect
+
+				// Feedback to console
 				["Password accepted", nil, false] call FUNC(addLine);
 				_control ctrlSetText "";
-				GVAR(currentConsoleObject) setVariable [QGVAR(passwordChallenge), false];
 
-				// Password was correct, execute code user was trying to execute when they hit password challenge
+				// Mark this as done and if sudo password was used mark that as used
+				GVAR(currentConsoleObject) setVariable [QGVAR(passwordChallenge), false];
+				if (_sudoSuccess) then {
+					GVAR(currentConsoleObject) setVariable [QGVAR(sudo_enabled), true];
+				};
+
+				// Execute code user was trying to execute when they hit password challenge
 				private _commandToExec = GVAR(currentConsoleObject) getVariable [QGVAR(passwordChallenge_commandToExec), ""];
 				if (_commandToExec isNotEqualTo "") then {
-					[_commandToExec] call FUNC(handleCommand);
+					[_commandToExec, true] call FUNC(handleCommand);
 				};
 				[COMPNAME, GVAR(debug), "NOTE", format ["Password correct and executing: %1", _commandToExec]] call EFUNC(common,debugNew);
 
 				GVAR(currentConsoleObject) setVariable [QGVAR(passwordChallenge_commandToExec), nil];
 
 			} else {
+				// Password was incorrect
 				if (_inputText isEqualTo 'cancel') then {
 					GVAR(currentConsoleObject) setVariable [QGVAR(passwordChallenge), false];
 					GVAR(currentConsoleObject) setVariable [QGVAR(passwordChallenge_commandToExec), nil];
 					_control ctrlSetText "";
 				} else {
-					["Password incorrect. Try again or type 'cancel'", nil, false] call FUNC(addLine);
+					["<t color='#FF0000'>Incorrect password. Try again or type 'cancel'", nil, false] call FUNC(addLine);
 				};
-
 			};
 
 		} else {

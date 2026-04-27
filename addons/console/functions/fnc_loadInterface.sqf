@@ -31,6 +31,7 @@ _interactedObject setVariable [QGVAR(reserved), clientOwner, true];
 // If version of saved data is later on server than our machine we need to request latest version from server
 if (isMultiplayer && {_interactedObject getVariable [QGVAR(last_update), 0] > (_interactedObject getVariable [QGVAR(last_update_local), -1])}) exitWith {
 
+	[clientOwner, _interactedObject] call FUNC(server_sendData);
 	[{_this getVariable [QGVAR(last_update), 0] > _this getVariable [QGVAR(last_update_local), -1]}, {
 		createDialog "RAA_console_console";
 	}, _interactedObject, 10, {[COMPNAME, GVAR(debug), "ERROR", "loadInterface: Data request from server failed!"] call EFUNC(common,debugNew);}] call CBA_fnc_waitUntilAndExecute;

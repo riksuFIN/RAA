@@ -13,8 +13,7 @@
  * Example:	
  *	[] call RAA_console_fnc_
 */
-params [["_input", "", [""]]];
-
+params [["_input", "", [""]], ["_sudo", false, [false]]];
 
 if (_input isEqualTo "") exitWith {
     [COMPNAME, GVAR(debug), "WARNING", format ["Received invalid or nil command %1", _this]] call EFUNC(common,debugNew);
@@ -25,7 +24,6 @@ private _values = _input splitString " ";
 private _command = toLower (_values param [0, ""]);
 
 // Handle sudo
-private _sudo = false;
 if (_command isEqualTo "sudo") then {
 	_sudo = true;
 	_values deleteAt 0;

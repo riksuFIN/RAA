@@ -43,5 +43,4 @@ if (_password isNotEqualTo false && !(_interactedObject getVariable [QGVAR(sudo_
 
 // Now we can finally print this file to console
 [_content, _interactedObject] call FUNC(addLine);
-
-
+// TODO: Add formatting for output text. Linebreaks break color and text size on console.
