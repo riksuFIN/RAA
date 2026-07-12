@@ -78,16 +78,7 @@ playSound3D [QPATHTOF(sounds\radio_static.ogg), _object];
 private _sounds = [
 	"RAA_sound_radio_chill",
 	"RAA_sound_radio_epic",
-	"RAA_sound_radio_rock",
-	"tanoamusic1",
-	"tanoamusic2",
-	"ME_radio_music",
-	"ME_radio_music2",
-	"russian_music_tripaloski",
-	"music_club",
-	"music_rockbar",
-	"music_radio1",
-	"music_radio2"];
+	"RAA_sound_radio_rock"];
 if !(isNil {NOT_WORKSHOP}) then {
 	_sounds pushBack "RAA_sound_radio_vdvSong";
 };

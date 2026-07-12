@@ -13,42 +13,36 @@ class CfgSounds
 	};
 	class RAA_misc_axe_long {
 		name = "Cutting tree with axe (long version)";
-	//	sound[] = { "\r\misc\addons\RAA_misc\sounds\axe_cutting_tree_long.ogg", 2, 1, 400 }; // filename, volume, pitch, distance (optional)
 		sound[] = { QPATHTOF(sounds\axe_cutting_tree_long.ogg), 2, 1, 400 }; // filename, volume, pitch, distance (optional)
 		titles[] = {};
 	};
 	
 	class RAA_misc_dialog_holyShit {
 		name = "[Dialog] Holy shit";
-	//	sound[] = { "\r\misc\addons\RAA_misc\sounds\axe_cutting_tree_long.ogg", 2, 1, 400 }; // filename, volume, pitch, distance (optional)
 		sound[] = { QPATHTOF(sounds\holy.ogg), 3, 1, 30 }; // filename, volume, pitch, distance (optional)
 		titles[] = {};
 	};
 	class RAA_misc_dialog_noShoot {
 		name = "[Dialog] No shoot";
-	//	sound[] = { "\r\misc\addons\RAA_misc\sounds\axe_cutting_tree_long.ogg", 2, 1, 400 }; // filename, volume, pitch, distance (optional)
 		sound[] = { QPATHTOF(sounds\noShoot.ogg), 3, 1, 30 }; // filename, volume, pitch, distance (optional)
 		titles[] = {};
 	};
 	
 	class RAA_misc_dialog_nooo {
 		name = "[Dialog] Nooooo";
-	//	sound[] = { "\r\misc\addons\RAA_misc\sounds\axe_cutting_tree_long.ogg", 2, 1, 400 }; // filename, volume, pitch, distance (optional)
 		sound[] = { QPATHTOF(sounds\noooo.ogg), 3, 1, 30 }; // filename, volume, pitch, distance (optional)
 		titles[] = {};
 	};
 	
 	class RAA_misc_dialog_perkele {
 		name = "[Dialog] Perkele";
-	//	sound[] = { "\r\misc\addons\RAA_misc\sounds\axe_cutting_tree_long.ogg", 2, 1, 400 }; // filename, volume, pitch, distance (optional)
 		sound[] = { QPATHTOF(sounds\perkele.ogg), 4, 1, 30 }; // filename, volume, pitch, distance (optional)
 		titles[] = {};
 	};
 	
 	class RAA_misc_radio_static {
 		name = "[Effect] Radio Static";
-	//	sound[] = { "\r\misc\addons\RAA_misc\sounds\axe_cutting_tree_long.ogg", 2, 1, 400 }; // filename, volume, pitch, distance (optional)
-		sound[] = { QPATHTOF(sounds\radio_static.ogg), 1, 1, 30 }; // filename, volume, pitch, distance (optional)
+		sound[] = { QPATHTOF(sounds\radio_static.ogg), 0.8, 1, 30 }; // filename, volume, pitch, distance (optional)
 		titles[] = {};
 	};
 	
@@ -83,12 +77,6 @@ class CfgSounds
 		sound[] = { QPATHTOF(sounds\whistle_6.ogg), 4, 1, 150 }; // filename, volume, pitch, distance (optional)
 		titles[] = {};
 	};
-	
-	
-	
-	
-	
-	
 	
 	
 };
@@ -151,8 +139,6 @@ class CfgSFX {
 		sounds[] = {"sound1", "sound2"};
 		empty[] = {"", 0, 0, 0, 0, 0, 0, 0};
 	};
-	
-	
 	
 	
 	

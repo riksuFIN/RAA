@@ -22,10 +22,8 @@ v2.0.1
 				For now ammo count is only saved when moved to belt via ACE menu. Drag-and-drop inventory does not save ammo count (technical difficulty)
 				Moving from belt to inventory fully supports both ways (ACE menu and drag-and-drop).
 - [misc] Fixed error when placing music radio in mission
-				This was caused by missing a file while converting to HEMTT
-
-
-
+	Caused by missing a bit when converting to HEMTT.
+	Also removed songs that came from some other mod.
 
 
 

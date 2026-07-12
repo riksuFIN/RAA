@@ -237,7 +237,7 @@ class CfgVehicles {
 				
 				class GVAR(radio_off) {
 					displayName = "Turn radio on";
-					condition = "alive _target && !(_target getVariable [QQGVAR(radioPower), false])";
+					condition = QUOTE(alive _target && !(_target getVariable ARR_2([QQGVAR(radioPower),false])));
 					exceptions[] = {};
 				//	statement = "[_this, 1] call FUNC(handleRadioAction)";
 					statement = QUOTE([ARR_2(_this,1)] remoteExec [ARR_2(QQFUNC(handleRadioAction),2)]);
@@ -248,7 +248,7 @@ class CfgVehicles {
 				
 				class GVAR(radio_on) {
 					displayName = "Turn radio off";
-					condition = "alive _target && (_target getVariable [QQGVAR(radioPower), false])";
+					condition = QUOTE(alive _target && (_target getVariable ARR_2([QQGVAR(radioPower),false])));
 					exceptions[] = {};
 				//	statement = "[_this, 0] call FUNC(handleRadioAction)";
 					statement = QUOTE([ARR_2(_this,0)] remoteExec [ARR_2(QQFUNC(handleRadioAction),2)]);
