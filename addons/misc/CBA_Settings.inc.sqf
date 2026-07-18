@@ -142,7 +142,7 @@
     "SLIDER",
     ["Chance for items taking damage", "in percent"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     ["RAA", "Damageable Inventory Items"], // Pretty name of the category where the setting can be found. Can be stringtable entry.
-   [0.01, 100, 2, 0], // data for this setting (Default value)
+   [0.00, 100, 2, 0], // data for this setting (Default value)
     0, // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer
     {} // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_fnc_addSetting;
@@ -151,7 +151,7 @@
     "SLIDER",
     ["Chance for helmets being knocked off", "in percent\n\nTFN mod's helmets that have their chinbands open will have this value *2"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     ["RAA", "Damageable Inventory Items"], // Pretty name of the category where the setting can be found. Can be stringtable entry.
-   [0.01, 100, 5, 0], // data for this setting (Default value)
+   [0.00, 100, 5, 0], // data for this setting (Default value)
     0, // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer
     {} // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_fnc_addSetting;
@@ -160,7 +160,7 @@
     "SLIDER",
     ["Chance for weapon to be hit", "Causes a jam, never a complete weapon failure"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     ["RAA", "Damageable Inventory Items"], // Pretty name of the category where the setting can be found. Can be stringtable entry.
-   [0.01, 100, 3, 0], // data for this setting (Default value)
+   [0.00, 100, 3, 0], // data for this setting (Default value)
     0, // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer
     {} // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_fnc_addSetting;

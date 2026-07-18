@@ -15,7 +15,18 @@
 	IN PROGRESS: Indicator is now done via config. next step: Add premature hide if Zeus interface is hidden
 
 ================ CHANGE NOTES ===================================
-v2.0.1
+v2.0.2
+- [misc] Adjusted damageableItems CBA settings so invidual features can be disabled with chance-% slider
+
+
+TODO: Add drop-down menu to damageableItems to disable invidual item types (radio, consumeable etc) from damage
+
+
+
+
+
+
+v2.0.1	12.7.2026
 - [misc] Fixed bug where CBA setting for spawning consumeables to AI's was ignored.
 - [BeltSlot] Added CBA setting to enable/ disable ACE action to move headgear between belt and head.
 - [beltSlot] Added support for saving magazine's ammo count on belt.
@@ -24,7 +35,6 @@ v2.0.1
 - [misc] Fixed error when placing music radio in mission
 	Caused by missing a bit when converting to HEMTT.
 	Also removed songs that came from some other mod.
-
 
 
 
