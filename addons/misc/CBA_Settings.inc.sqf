@@ -140,16 +140,43 @@
 [
     QGVAR(damageableItems_chance),
     "SLIDER",
-    ["Chance for items taking damage", "in percent"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    ["Chance for items taking damage", "in percent. Set to zero to disable."], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     ["RAA", "Damageable Inventory Items"], // Pretty name of the category where the setting can be found. Can be stringtable entry.
    [0.00, 100, 2, 0], // data for this setting (Default value)
     0, // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer
     {} // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_fnc_addSetting;
 [
+    QGVAR(damageableItems_filter_radios),
+    "CHECKBOX",
+    ["Allow Damaging: Radios", "Allow ACRE and TFAR radios to be damaged"],
+    ["RAA", "Damageable Inventory Items"],
+    true,
+    0,
+    {}
+] call CBA_fnc_addSetting;
+[
+    QGVAR(damageableItems_filter_consum),
+    "CHECKBOX",
+    "Allow Damaging: Consumeables",
+    ["RAA", "Damageable Inventory Items"],
+    true,
+    0,
+    {}
+] call CBA_fnc_addSetting;
+[
+    QGVAR(damageableItems_filter_mags),
+    "CHECKBOX",
+    "Allow Damaging: Magazines & Throwables",
+    ["RAA", "Damageable Inventory Items"],
+    true,
+    0,
+    {}
+] call CBA_fnc_addSetting;
+[
     QGVAR(damageableItems_headgearChance), 
     "SLIDER",
-    ["Chance for helmets being knocked off", "in percent\n\nTFN mod's helmets that have their chinbands open will have this value *2"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    ["Chance for helmets being knocked off", "in percent. Set to zero to disable.\n\nTFN mod's helmets that have their chinbands open will have this value *2"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     ["RAA", "Damageable Inventory Items"], // Pretty name of the category where the setting can be found. Can be stringtable entry.
    [0.00, 100, 5, 0], // data for this setting (Default value)
     0, // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer
@@ -158,7 +185,7 @@
 [
     QGVAR(damageableItems_chance_weapon),
     "SLIDER",
-    ["Chance for weapon to be hit", "Causes a jam, never a complete weapon failure"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    ["Chance for weapon to be hit", " Set to zero to disable.\nCauses a jam, never a complete weapon failure"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     ["RAA", "Damageable Inventory Items"], // Pretty name of the category where the setting can be found. Can be stringtable entry.
    [0.00, 100, 3, 0], // data for this setting (Default value)
     0, // "_isGlobal" flag. Set this to 1 to always have this setting synchronized between all clients in multiplayer

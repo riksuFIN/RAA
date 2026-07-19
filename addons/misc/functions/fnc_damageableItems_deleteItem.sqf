@@ -21,7 +21,7 @@ params [["_unit", player], "_itemToDelete", ["_replacementItem", ""], ["_remaini
 
 
 // Find out if beltSlot system is enabled, as it requires special handling
-private _beltSlotEnabled = !(isNil "RAA_misc_beltSlot_autoMoveBottlesToBelt");
+private _beltSlotEnabled = !(isNil "RAA_beltSlot_fnc_beltSlot_doMoveToBelt");
 
 
 // First check if item is on belt

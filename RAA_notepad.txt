@@ -17,11 +17,14 @@
 ================ CHANGE NOTES ===================================
 v2.0.2
 - [misc] Adjusted damageableItems CBA settings so invidual features can be disabled with chance-% slider
+- [misc] Improved damageableItems system slighly.
+	- Added support for all misc inventory items
+	- Added CBA settings to disable damaging invidual item types (radios, mags, consumeables)
+- [beltSlot] Removed rogue systemChat debug message left behind from testing
 
 
 TODO: Add drop-down menu to damageableItems to disable invidual item types (radio, consumeable etc) from damage
-
-
+TODO: Add fix for helos ascending vertically when item is on belt. Delete belt-item when boarding a helo
 
 
 
