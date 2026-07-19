@@ -22,8 +22,6 @@
 */
 params ["", ["_unit", objNull], ["_classname", ""], ["_ignoreInventory", false], ["_slotToUse", -1], ["_source", -1], ["_ammoCount", -1]];
 
-[COMPNAME, true, "LOG", format ["Params %1", _this]] call EFUNC(common,debugNew);
-
 if !(local _unit) exitWith {
 	[COMPNAME, true, "LOG", format ["doMoveToBelt: Failed to move to belt: %1 is not local", _unit]] call EFUNC(common,debugNew);
 	false
@@ -220,7 +218,6 @@ if (_slotToUse isEqualTo 0) then {
 
 			private _turn = [90, 0, 0] select _selected;
 			_object setDir _turn;
-			// TODO: setDir requires some additional commands for MP synchronization!
 			[COMPNAME, GVAR(debug), "NOTE", format ["Rotated belt object by %1 degress", _turn]] call EFUNC(common,debugNew);
 			} else {
 				// Standard orientation
@@ -257,7 +254,6 @@ if (_slotToUse isEqualTo 0) then {
 
 			private _turn = [90, 0, 0] select _selected;
 			_object setDir _turn;
-			// TODO: setDir requires some additional commands for MP synchronization!
 			[COMPNAME, GVAR(debug), "NOTE", format ["Rotated belt object by %1 degress", _turn]] call EFUNC(common,debugNew);
 
 			} else {
