@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "../defines.hpp"
 /* File: fnc_beltSlot_doMoveToBelt.sqf
  * Author(s): riksuFIN
  * Description: Moves item from inventory to BeltSlot
@@ -27,17 +28,14 @@ if !(local _unit) exitWith {
 	false
 };
 
-/*
-// Safety for executing this fnc before player charter exists
-if (isNull (_this select 1)) exitWith {
-	[	{
-			_this call FUNC(beltSlot_doMoveToBelt);
-		},
-		_this,
-		4
-	] call CBA_fnc_waitAndExecute;
+private _beltSlots = _unit getVariable [QGVAR(data), []];
+
+// Support for special source slots
+switch (_source) do {
+	case (6240): {_classname = headgear _unit;};	// headgear
+	case (IDC_RAA_BELTSLOT_SLOT1): {_classname = _beltSlots param [0, []] param [0, ""]; _ammoCount = _beltSlots param [0, []] param [7, ""]};
+	case (IDC_RAA_BELTSLOT_SLOT2): {_classname = _beltSlots param [1, []] param [0, ""]; _ammoCount = _beltSlots param [1, []] param [7, ""]};
 };
-*/
 
 // This fnc must be executed where unit is local or problems will follow.
 // This is to make it easier to be executed by mission maker
@@ -46,9 +44,6 @@ if (isNull _unit || _className isEqualTo "") exitWith {
 	[COMPNAME, true, "LOG", format ["doMoveToBelt: Invalid object %1 or classname %2 provided", _unit, _classname]] call EFUNC(common,debugNew);
 	false
 };
-
-
-private _beltSlots = _unit getVariable [QGVAR(data), []];
 
 // Find free slot to use
 if (_slotToUse isEqualTo -1) then {
@@ -63,7 +58,7 @@ if (_slotToUse isEqualTo -1) then {
 	};
 } else {
 	// Slot defined in parameter, check it is free
-	if (_beltSlots param [_slotToUse, []] isNotEqualTo []) then {
+	if (_beltSlots param [_slotToUse, []] isNotEqualTo [] && !(_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2])) then {
 		_slotToUse = -1;
 	};
 	
@@ -71,11 +66,6 @@ if (_slotToUse isEqualTo -1) then {
 if (_slotToUse < 0) exitWith {
 	if (GVAR(debug)) then {systemChat "[RAA_beltSlot] Belt is full!";};
 	false
-};
-
-// Support for headgear slot
-if (_source isEqualTo 6240) then {
-	_classname = headgear _unit;
 };
 
 // Find item's 3D model path
@@ -144,22 +134,12 @@ if (_ignoreInventory) then {
 			_success = true;
 			_exit = true;			
 		};
+		case (IDC_RAA_BELTSLOT_SLOT1): {_success = [0, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};	// Moving between beltslots
+		case (IDC_RAA_BELTSLOT_SLOT2): {_success = [1, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};
 	};
 
-	if (_exit) exitWith {false};
-/*
-	if (_source isEqualTo 632 || _source isEqualTo 640) then {
-		// Item was picked up from external container
-		_container = _unit getVariable [QGVAR(beltSlot_openedContainer), objNull];
-		if (isNull _container) exitWith {[COMPNAME, GVAR(debug), "WARNING", format ["Failed to find external inventory to remove item from! %1", _container]] call EFUNC(common,debugNew); false};
-	};
+	if (_exit) exitWith {};
 
-	// Headgear slot
-	if (_source isEqualTo 6240) exitWith {
-		removeHeadgear _unit;
-		_success = true;
-	};
-*/
 	if (_classname isEqualTo headgear _unit) then {
 		removeHeadgear _unit;
 		_success = true;
@@ -265,6 +245,8 @@ if (_slotToUse isEqualTo 0) then {
 	
 };
 
+//private _orientation = setVectorDirAndUp 
+
 // Potential fix for potential clipping problems
 [_object, false] remoteExec ["setPhysicsCollisionFlag", 0];
 
@@ -288,7 +270,7 @@ if (_kindOf isEqualTo 1 || _kindOf isEqualTo 3) then {
 
 
 // Array is:
-// [[SLOT1_CLASSNAME, SLOT1_PICPATH, SLOT1_ITEMNAME, SLOT1_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE], [SLOT2_CLASSNAME, SLOT2_PICPATH, SLOT2_ITEMNAME, SLOT2_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE]]
+// [[SLOT1_CLASSNAME, SLOT1_PICPATH, SLOT1_ITEMNAME, SLOT1_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE, AMMOCOUNT, ORIENTATION], [SLOT2_CLASSNAME, SLOT2_PICPATH, SLOT2_ITEMNAME, SLOT2_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE, AMMOCOUNT, ORIENTATION]]
 
 // Save all this trash so we can find it again
 _beltSlots set [_slotToUse, [_classname, _picture, _displayName, _object, _weight, _canDrink, _itemTypeCfg, _ammoCount]];

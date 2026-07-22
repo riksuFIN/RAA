@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "../defines.hpp"
 /* File: fnc_beltSlot_doMoveFrombelt.sqf
  * Author(s): riksuFIN
  * Description: Adds item from belt to unit's inventory and deletes belt 3d model
@@ -24,8 +25,8 @@ if (_slot isEqualTo -1 && _sourceContainerIDC isEqualTo -1) exitWith {false};
 private _exit = false;
 if (_sourceContainerIDC > 0) then {
 	switch (_sourceContainerIDC) do {
-		case (1288): {_slot = 0};
-		case (1289): {_slot = 1};
+		case (IDC_RAA_BELTSLOT_SLOT1): {_slot = 0};
+		case (IDC_RAA_BELTSLOT_SLOT2): {_slot = 1};
 	//	case (-1): {};
 		default {_exit = true};
 	};

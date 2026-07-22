@@ -53,31 +53,31 @@ class RscDisplayInventory {
 		// Containers
 		class GroundContainer: RscListbox {
 		//	onLBDrop = QUOTE([-1, player, 9, _this select 3] call FUNC(beltSlot_doMoveFrombelt));
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,9,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,9,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		class UniformContainer: GroundContainer {		// idc = 633;		Select 3
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,0,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,0,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		class VestContainer: UniformContainer {		// idc = 638;
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,1,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,1,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		class BackpackContainer: UniformContainer {		// idc = 619;
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,2,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,2,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 
 		// Slots (where uniform/ vest/ backpack item is)
 		class SlotPrimary;
 		class SlotHeadgear: SlotPrimary {		// idc = 6240;
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,3,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,3,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		class UniformSlot: SlotPrimary {		// idc = 6331
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,0,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,0,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		class VestSlot: SlotPrimary {			// idc = 6381
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,1,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,1,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 		class BackpackSlot: SlotPrimary {		// idc = 6191
-			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(1288,1289)]) then {[ARR_4(-1,ACE_player,2,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
+			onLBDrop = QUOTE(if (_this select 3 in [ARR_2(IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2)]) then {[ARR_4(-1,ACE_player,2,_this select 3)] call FUNC(beltSlot_doMoveFrombelt)});
 		};
 	};
 	
