@@ -22,7 +22,7 @@ v2.0.2
 	- Added CBA settings to disable damaging invidual item types (radios, mags, consumeables)
 	- TFAR radios are also counted now as radios (theoretically, untested)
 - [beltSlot] Removed rogue systemChat debug message left behind from testing
-
+- [beltSlot] Added support for moving items between belt slots
 
 TODO: Add fix for helos ascending vertically when item is on belt. Delete belt-item when boarding a helo
 TODO: Add support for moving item from belt to other belt side

@@ -17,3 +17,4 @@ PREP(placeExplosive_getChildren);
 PREP(onRespawn);
 PREP(takeFromBelt);
 PREP(getGrabPosition);
+PREP(attachBeltItem);

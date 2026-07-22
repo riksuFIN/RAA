@@ -58,8 +58,18 @@ if (_slotToUse isEqualTo -1) then {
 	};
 } else {
 	// Slot defined in parameter, check it is free
-	if (_beltSlots param [_slotToUse, []] isNotEqualTo [] && !(_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2])) then {
-		_slotToUse = -1;
+	if (_beltSlots param [_slotToUse, []] isNotEqualTo []) then {
+
+		// Slot is occupied. If we're swapping between belt slots move existing item to other side, otherwise just exit
+		if (_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2]) then {
+
+			private _sourceSlot = [0,1] select (_source isEqualTo IDC_RAA_BELTSLOT_SLOT1);
+			[nil, _unit, _beltSlots param [_sourceSlot, []] param [0,""]] call FUNC(beltSlot_doMoveToBelt);
+
+
+		} else {
+			_slotToUse = -1;
+		};
 	};
 	
 };
@@ -132,7 +142,22 @@ if (_ignoreInventory) then {
 		case (6240): {	// Headgear
 			removeHeadgear _unit;
 			_success = true;
-			_exit = true;			
+			_exit = true;
+		};
+		case (6238): {	// Binoculars
+			_unit removeWeapon (binocular _unit);
+			_success = true;
+			_exit = true;
+		};
+		case (6216): {	// Goggles
+			_unit unlinkItem (goggles _unit);
+			_success = true;
+			_exit = true;
+		};
+		case (6217): {	// NVG
+			_unit unlinkItem (hmd _unit);
+			_success = true;
+			_exit = true;
 		};
 		case (IDC_RAA_BELTSLOT_SLOT1): {_success = [0, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};	// Moving between beltslots
 		case (IDC_RAA_BELTSLOT_SLOT2): {_success = [1, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};
@@ -140,24 +165,26 @@ if (_ignoreInventory) then {
 
 	if (_exit) exitWith {};
 
-	if (_classname isEqualTo headgear _unit) then {
-		removeHeadgear _unit;
-		_success = true;
-	} else {
-		private _isHuman = _container isKindOf "CAManBase";	// We need to differiate corpses from boxes
-		switch (_itemType select 0) do {
-			case ("Equipment");
-			case ("Item"): {if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeItem} else {_success = [_container, _classname] call CBA_fnc_removeItemCargo}};
-			case ("Magazine");
-			case ("Mine"): {if (_isHuman) then {_success = [_container, _classname, _ammoCount] call CBA_fnc_removeMagazine} else {_success = [_container, _classname, 1, _ammoCount] call CBA_fnc_removeMagazineCargo}};
-			case ("Weapon"): {if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeWeapon} else {_success = [_container, _classname] call CBA_fnc_removeWeaponCargo}};
+	private _isHuman = _container isKindOf "CAManBase";	// We need to differiate corpses from boxes
+	switch (_itemType select 0) do {
+		case ("Equipment");
+	//	case ("Item"): {if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeItem} else {_success = [_container, _classname] call CBA_fnc_removeItemCargo}};
+		case ("Item"): {
+			if (_itemType select 1 isEqualTo "Binocular") then {	// Binocular is classed as item but handled as weapon
+				if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeWeapon} else {_success = [_container, _classname] call CBA_fnc_removeWeaponCargo};
+				_kindOf = 2;
+			} else {
+				if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeItem} else {_success = [_container, _classname] call CBA_fnc_removeItemCargo};
+			};
 		};
+		case ("Magazine");
+		case ("Mine"): {if (_isHuman) then {_success = [_container, _classname, _ammoCount] call CBA_fnc_removeMagazine} else {_success = [_container, _classname, 1, _ammoCount] call CBA_fnc_removeMagazineCargo}};
+		case ("Weapon"): {if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeWeapon} else {_success = [_container, _classname] call CBA_fnc_removeWeaponCargo}};
 	};
 	[COMPNAME, GVAR(debug), "INFO", format ["_container: %1, _itemType: %2, _success: %3", _container, _itemType, _success]] call EFUNC(common,debugNew);
-	//_success = true;
 };
 if !(_success) exitWith {
-	[COMPNAME, GVAR(debug), "ERROR", format ["Failed to delete %1!", _itemType]] call EFUNC(common,debugNew);
+	[COMPNAME, GVAR(debug), "WARNING", format ["Failed to delete %1!", _itemType]] call EFUNC(common,debugNew);
 	false
 };
 
@@ -171,81 +198,8 @@ switch (_className) do {
 // Now that we have model path we can spawn it and place it on belt
 private _object = createSimpleObject [_modelPath, getPosASL _unit];
 
-// Attach model to belt
-if (_slotToUse isEqualTo 0) then {
-	// -- Left side
-	switch (_kindOf) do {
-		case (0): {	// Generic item
-			_object attachTo [_unit, [-0.2, 0, -0.05], "Pelvis", true]; 
-			_object setVectorDirAndUp [[1, 0, 0], [0, 0, 1]];
-		};
-		case (1): {	// Mine
-			_object attachTo [_unit, [-0.2, 0, -0.05], "Pelvis", true]; 
-			_object setVectorDirAndUp [[0, 1, 0], [-1, 0, 0]];
-		};
-		case (2): {	// Headgear
-			_object attachTo [_unit, [0.4, 0, -0.33], "Pelvis", true];
-			_object setVectorDirAndUp [[-0.8, 0, -2], [-1, 0, 0]];
-		};
-		case (3): {	// Magazine
-			_object attachTo [_unit, [-0.2, 0, -0.05], "Pelvis", true]; 
-			
-			// Do additional check to see if model is in wrong orientation
-			private _boundingBox = 0 boundingBoxReal _object select 0;
-
-			private _selected = _boundingBox find selectMin _boundingBox;
-			if (_selected <= 2) then {
-
-			private _turn = [90, 0, 0] select _selected;
-			_object setDir _turn;
-			[COMPNAME, GVAR(debug), "NOTE", format ["Rotated belt object by %1 degress", _turn]] call EFUNC(common,debugNew);
-			} else {
-				// Standard orientation
-				_object setVectorDirAndUp [[1, 5, 0], [0, 0, 1]];
-			};
-		};
-	};
-	
-	
-} else {
-	// -- Right side
-	
-	switch (_kindOf) do {
-		case (0): {	// Generic item
-			_object attachTo [_unit, [0.2, 0, -0.05], "Pelvis", true]; 
-			_object setVectorDirAndUp [[1, 0, 0], [0, 0, 1]];
-		};
-		case (1): {	// Mine
-			_object attachTo [_unit, [0.2, 0, -0.05], "Pelvis", true]; 
-			_object setVectorDirAndUp [[0, 1, 0], [1, 0, 0]];
-		};
-		case (2): {	// Headgear
-			_object attachTo [_unit, [-0.3, -0.3, -0.33], "Pelvis", true];
-			_object setVectorDirAndUp [[0.1, 0, -0.2], [1, 0.5, 0]];
-		};
-		case (3): {	// Magazine
-			_object attachTo [_unit, [0.2, 0, -0.05], "Pelvis", true]; 
-			
-			// Do additional check to see if model is in wrong orientation
-			private _boundingBox = 0 boundingBoxReal _object select 0;
-
-			private _selected = _boundingBox find selectMin _boundingBox;
-			if (_selected <= 2) then {
-
-			private _turn = [90, 0, 0] select _selected;
-			_object setDir _turn;
-			[COMPNAME, GVAR(debug), "NOTE", format ["Rotated belt object by %1 degress", _turn]] call EFUNC(common,debugNew);
-
-			} else {
-				// Standard orientation
-				_object setVectorDirAndUp [[1, -5, 0], [0, 0, 1]];
-			};
-		};
-	};
-	
-};
-
-//private _orientation = setVectorDirAndUp 
+// Attach and orient physical object to character
+[_unit, _slotToUse, _object, _kindOf] call FUNC(attachBeltItem);
 
 // Potential fix for potential clipping problems
 [_object, false] remoteExec ["setPhysicsCollisionFlag", 0];
@@ -259,14 +213,20 @@ private _picture = getText (_config >> "picture");
 private _canDrink = (getNumber (_config >> "acex_field_rations_thirstQuenched")) > 0;
 private _itemTypeCfg = getNumber (configFile >> "CfgWeapons" >> _className >> "ItemInfo" >> "type");
 
-// Get item's mass
-private _weight = 0;
+// Get item's mass. There are two possible config locations for it, depending on item type
+private _weight = getNumber (_config >> "mass");
+if (_weight isEqualTo 0) then {
+	_weight = getNumber (_config >> "ItemInfo" >> "mass");
+};
+
+/*
 if (_kindOf isEqualTo 1 || _kindOf isEqualTo 3) then {
 	// In case of mines and magazines we need to handle them differently
 	_weight = getNumber (_config >> "mass");
 } else {
-	_weight = getNumber (_config >> "ItemInfo" >> "mass");
+	
 };
+*/
 
 
 // Array is:
@@ -285,23 +245,6 @@ if !(isNull findDisplay 602) then {
 	call FUNC(beltSlot_onInventoryOpened);
 };
 
-
-/*
-//model = "\idi\acre\addons\sys_prc148\Data\models\prc148.p3d";
-private _modelPath = getText (_cfgWeapons >> _x >> "model");
-
-// Left side
-test2 attachTo [player, [-0.2, 0, -0.05], "Pelvis", true]; 
-
-// Right side
-test1 attachTo [player, [0.2, 0, -0.05], "Pelvis", true]; 
- 
-// Canteen
-test1 setVectorDirAndUp [[1, 0, 0], [0, 0, 1]];
-
-// mine
-test2 setVectorDirAndUp [[0, 1, 0], [-1, 0, 0]];
-*/
 
 
 true

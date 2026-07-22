@@ -27,7 +27,6 @@ if (_sourceContainerIDC > 0) then {
 	switch (_sourceContainerIDC) do {
 		case (IDC_RAA_BELTSLOT_SLOT1): {_slot = 0};
 		case (IDC_RAA_BELTSLOT_SLOT2): {_slot = 1};
-	//	case (-1): {};
 		default {_exit = true};
 	};
 };
