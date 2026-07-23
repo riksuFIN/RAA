@@ -28,13 +28,13 @@ if !(local _unit) exitWith {
 	false
 };
 
-private _beltSlots = _unit getVariable [QGVAR(data), []];
+private _beltData = _unit getVariable [QGVAR(data), []];
 
 // Support for special source slots
 switch (_source) do {
 	case (6240): {_classname = headgear _unit;};	// headgear
-	case (IDC_RAA_BELTSLOT_SLOT1): {_classname = _beltSlots param [0, []] param [0, ""]; _ammoCount = _beltSlots param [0, []] param [7, ""]};
-	case (IDC_RAA_BELTSLOT_SLOT2): {_classname = _beltSlots param [1, []] param [0, ""]; _ammoCount = _beltSlots param [1, []] param [7, ""]};
+	case (IDC_RAA_BELTSLOT_SLOT1): {_classname = _beltData param [0, []] param [0, ""]; _ammoCount = _beltData param [0, []] param [7, ""]};
+	case (IDC_RAA_BELTSLOT_SLOT2): {_classname = _beltData param [1, []] param [0, ""]; _ammoCount = _beltData param [1, []] param [7, ""]};
 };
 
 // This fnc must be executed where unit is local or problems will follow.
@@ -45,31 +45,49 @@ if (isNull _unit || _className isEqualTo "") exitWith {
 	false
 };
 
+// Special handling for swapping beltslots
+private _success = false;
+if (_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2]) exitWith {
+	private _sourceSlot = [0,1] select (_source isEqualTo IDC_RAA_BELTSLOT_SLOT1);
+
+	// Copy data from old slot
+	private _copySourceSlot = _beltData param [_sourceSlot, []];
+	if (_copyFrom isEqualTo []) exitWith {[COMPNAME, GVAR(debug), "ERROR", "Nothing to copy over!"] call EFUNC(common,debugNew);};
+
+	// If target slot is already occupied save that and directly paste it to other side
+	private _copyTargetSlot = _beltData param [_slotToUse, []];
+	if (_copyTargetSlot isNotEqualTo []) then {
+
+		// Slot is occipied
+		_beltData set [_sourceSlot, _copyTargetSlot];
+		[_unit, _sourceSlot, _copyTargetSlot param [3, objNull]] call FUNC(attachBeltItem);
+	};
+
+	_beltData set [_slotToUse, _copySourceSlot];
+	[_unit, _slotToUse, _copySourceSlot param [3, objNull]] call FUNC(attachBeltItem);
+
+	[COMPNAME, GVAR(debug), "INFO", format ["Swapped belSlot %1 to %2", _sourceSlot, _slotToUse]] call EFUNC(common,debugNew);
+};
+
+
+
 // Find free slot to use
 if (_slotToUse isEqualTo -1) then {
 	// Slot not defined via parameter, find free one
-	if (_beltSlots param [0, []] isEqualTo []) then {
+	if (_beltData param [0, []] isEqualTo []) then {
 		_slotToUse = 0;
 		
 	} else {
-		if (_beltSlots param [1, []] isEqualTo []) then {
+		if (_beltData param [1, []] isEqualTo []) then {
 			_slotToUse = 1;
 		};
 	};
 } else {
 	// Slot defined in parameter, check it is free
-	if (_beltSlots param [_slotToUse, []] isNotEqualTo []) then {
+	if (_beltData param [_slotToUse, []] isNotEqualTo []) then {
 
-		// Slot is occupied. If we're swapping between belt slots move existing item to other side, otherwise just exit
-		if (_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2]) then {
-
-			private _sourceSlot = [0,1] select (_source isEqualTo IDC_RAA_BELTSLOT_SLOT1);
-			[nil, _unit, _beltSlots param [_sourceSlot, []] param [0,""]] call FUNC(beltSlot_doMoveToBelt);
-
-
-		} else {
-			_slotToUse = -1;
-		};
+		// Slot is occupied, exit.
+		_slotToUse = -1;
 	};
 	
 };
@@ -100,21 +118,7 @@ if (_modelPath isEqualTo "") exitWith {
 	false
 };
 
-private _kindOf = 0;	// 0: Generic item, 1: mine, 2: headgear, 3: magazine
-private _exit = false;
-private _itemType = _classname call BIS_fnc_itemType;
-switch (_itemType select 0) do {
-	case ("Item"): {_kindOf = 0};
-	case ("Mine"): {_kindOf = 1};
-	case ("Equipment"): {
-		_kindOf = 2;
-		if (_itemType select 1 isNotEqualTo "Headgear") then {
-			_exit = true;
-		};
-	};
-	case ("Magazine"): {_kindOf = 3};
-	default {_exit = true};
-};
+
 if (_exit) exitWith {
 	systemChat "Unsupported item.";
 	if (GVAR(debug)) then {[ADDON, "WARNING", format ["Unsupported item %1 classname %2", _itemType, _classname], true, false] call EFUNC(common,debug);};
@@ -122,9 +126,7 @@ if (_exit) exitWith {
 };
 
 
-
 // Delete item from inventory
-private _success = false;
 if (_ignoreInventory) then {
 	_success = true;
 } else {
@@ -159,8 +161,8 @@ if (_ignoreInventory) then {
 			_success = true;
 			_exit = true;
 		};
-		case (IDC_RAA_BELTSLOT_SLOT1): {_success = [0, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};	// Moving between beltslots
-		case (IDC_RAA_BELTSLOT_SLOT2): {_success = [1, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};
+//		case (IDC_RAA_BELTSLOT_SLOT1): {_success = [0, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};	// Moving between beltslots
+//		case (IDC_RAA_BELTSLOT_SLOT2): {_success = [1, _unit] call FUNC(beltSlot_deleteFromBelt); _exit = true;};
 	};
 
 	if (_exit) exitWith {};
@@ -172,7 +174,6 @@ if (_ignoreInventory) then {
 		case ("Item"): {
 			if (_itemType select 1 isEqualTo "Binocular") then {	// Binocular is classed as item but handled as weapon
 				if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeWeapon} else {_success = [_container, _classname] call CBA_fnc_removeWeaponCargo};
-				_kindOf = 2;
 			} else {
 				if (_isHuman) then {_success = [_container, _classname] call CBA_fnc_removeItem} else {_success = [_container, _classname] call CBA_fnc_removeItemCargo};
 			};
@@ -189,22 +190,32 @@ if !(_success) exitWith {
 };
 
 
-// Overrides for weirdly oriented stuff
-switch (_className) do {
-	case ("SatchelCharge_Remote_Mag"): {_kindOf = 0};
-};
-
-
 // Now that we have model path we can spawn it and place it on belt
 private _object = createSimpleObject [_modelPath, getPosASL _unit];
 
 // Attach and orient physical object to character
-[_unit, _slotToUse, _object, _kindOf] call FUNC(attachBeltItem);
+_success = [_unit, _slotToUse, _object, _kindOf] call FUNC(attachBeltItem);
+if !(_success) exitWith {false};
 
 // Potential fix for potential clipping problems
 [_object, false] remoteExec ["setPhysicsCollisionFlag", 0];
 
-// Get remaining info we need
+// Add EH for get in/ get out of vehicles to handle hiding beltItems
+if (_unit getVariable [QGVAR(EH_getIn), -1] isEqualTo -1) then {
+	
+	private _id = _unit addEventHandler ["GetInMan", {
+		[_this select 0, true, _this select 2] call FUNC(beltSlot_onMountingVehicle);
+	}];
+	
+	_unit addEventHandler ["GetOutMan", {
+		[_this select 0, false, _this select 2] call FUNC(beltSlot_onMountingVehicle);
+	}];
+
+	_unit setVariable [QGVAR(EH_getIn), _id];
+};
+
+
+// Get remaining info we need for array
 private _displayName = getText (_config >> "displayName");
 	if (_ammoCount >= 0) then {
 		_displayName = format ["%1 (%2)", _displayName, _ammoCount];
@@ -219,32 +230,20 @@ if (_weight isEqualTo 0) then {
 	_weight = getNumber (_config >> "ItemInfo" >> "mass");
 };
 
-/*
-if (_kindOf isEqualTo 1 || _kindOf isEqualTo 3) then {
-	// In case of mines and magazines we need to handle them differently
-	_weight = getNumber (_config >> "mass");
-} else {
-	
-};
-*/
-
-
 // Array is:
-// [[SLOT1_CLASSNAME, SLOT1_PICPATH, SLOT1_ITEMNAME, SLOT1_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE, AMMOCOUNT, ORIENTATION], [SLOT2_CLASSNAME, SLOT2_PICPATH, SLOT2_ITEMNAME, SLOT2_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE, AMMOCOUNT, ORIENTATION]]
+// [[SLOT1_CLASSNAME, SLOT1_PICPATH, SLOT1_ITEMNAME, SLOT1_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE, AMMOCOUNT, KINDOF], [SLOT2_CLASSNAME, SLOT2_PICPATH, SLOT2_ITEMNAME, SLOT2_OBJECT, WEIGHT, DRINKABLE, ITEMTYPE, AMMOCOUNT, KINDOF]]
 
 // Save all this trash so we can find it again
-_beltSlots set [_slotToUse, [_classname, _picture, _displayName, _object, _weight, _canDrink, _itemTypeCfg, _ammoCount]];
-_unit setVariable [QGVAR(data), _beltSlots, true];
+_beltData set [_slotToUse, [_classname, _picture, _displayName, _object, _weight, _canDrink, _itemTypeCfg, _ammoCount, _kindOf]];
+_unit setVariable [QGVAR(data), _beltData, true];
 
 // Add mass of item to player as virtual mass
 [_unit, _unit, _weight] call ace_movement_fnc_addLoadToUnitContainer;
-
 
 // If inventory screen is open refresh belt images
 if !(isNull findDisplay 602) then {
 	call FUNC(beltSlot_onInventoryOpened);
 };
-
 
 
 true

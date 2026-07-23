@@ -9,15 +9,8 @@
  */
 
 
-
-
-
-
-
-
 	// Client-side
 if (hasInterface) then {
-	
 	
 	// Handle auto-moving bottles to belt if enabled in setting
 	// Wih delay to allow other scripts to spawn those bottles
@@ -29,18 +22,7 @@ if (hasInterface) then {
 		] call CBA_fnc_waitAndExecute;
 	};
 	
-	
-	// Add EH for get in/ get out of vehicles to hide bottle 3d models
-	player addEventHandler ["GetInMan", {
-		[_this select 0, true] call FUNC(beltSlot_onMountingVehicle);
-	}];
-	
-	player addEventHandler ["GetOutMan", {
-		[_this select 0, false] call FUNC(beltSlot_onMountingVehicle);
-	}];
-	
-	
-	
+
 	// Inventory EH for beltSlot drag-and-drop system
 	player addEventHandler ["InventoryOpened", {
 		params ["_unit", "_container"];
@@ -56,7 +38,6 @@ if (hasInterface) then {
 		params ["_unit", "_corpse"];
 		call FUNC(onRespawn);
 	}];
-	
 };
 
 
@@ -89,7 +70,5 @@ if (isServer) then {
 		};
 	}];
 };
-
-
 
 

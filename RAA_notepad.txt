@@ -2,8 +2,6 @@
 - ACE Arsenal Overview & Item Description will not hide with rest of interface
 - BeltSlot: After client disconnects from MP server bottles their bottles are removed, even if their body remains to be controlled by AI.
 - BeltSlot: After drag-and-dropping belt items in inventory screen it get stuck in red/white colors. Closing and re-opening inventory fixes this.
-- BeltSlot: Moving a depleted magazine to belt fills it up.
-- Consumeables are spawned to AI units even with setting disabled
 
 ================ TO DO ===================================
 - Rewrite fieldRation_Warnings
@@ -30,7 +28,7 @@ TODO: "pulling a binocular directly from the crate to belt will pop error "unabl
 TODO: Check mine detector, tool kit and medkit orientation
 
 MIHIN JÄI:
-- Moving belt to belt: Test!
+- Moving belt to belt: TEST REPLACING ITEM
 
 
 

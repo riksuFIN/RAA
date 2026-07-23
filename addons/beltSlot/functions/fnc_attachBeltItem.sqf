@@ -14,15 +14,46 @@
 Returns: 	Success
 *
 * Example:	
-*	[] call RAA_module_fnc_attachBeltItem
+*	[] call RAA_beltSlot_fnc_attachBeltItem
 */
 
 params [["_unit", ACE_player], ["_slotToUse", -1], ["_object", objNull], ["_kindOf", -1]];
 
-if (_slotToUse < 0 || _object isEqualTo objNull || _kindOf < 0) exitWith {
+if (_slotToUse < 0 || _object isEqualTo objNull) exitWith {
 	[COMPNAME, GVAR(debug), "WARNING", format ["Attaching item failed: invalid parameter! %1", _this]] call EFUNC(common,debugNew);
+	false
 };
 
+if (_kindOf < 0) then {
+	_kindOf = (_unit getVariable [QGVAR(data), []] param [_slotToUse, []] param [8, -1]);
+};
+
+// Find out how we should orient this item based on its type
+private _kindOf = 0;	// 0: Generic item, 1: mine, 2: headgear, 3: magazine
+private _exit = false;
+private _itemType = _classname call BIS_fnc_itemType;
+switch (_itemType select 0) do {
+	case ("Item"): {_kindOf = 0};
+	case ("Mine"): {_kindOf = 1};
+	case ("Equipment"): {
+		_kindOf = 2;
+		if (_itemType select 1 isNotEqualTo "Headgear") then {
+			_exit = true;
+		};
+	};
+	case ("Magazine"): {_kindOf = 3};
+	default {_exit = true};
+};
+
+if (_exit) exitWith {
+	[COMPNAME, GVAR(debug), "WARNING", "Attaching item FAILED!"] call EFUNC(common,debugNew);
+	false
+}
+
+// Overrides for weirdly oriented stuff
+switch (typeOf _object) do {
+	case ("SatchelCharge_Remote_Mag"): {_kindOf = 0};
+};
 
 // Attach model to belt
 private _success = true;
