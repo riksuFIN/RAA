@@ -52,7 +52,7 @@ if (_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2]) exitWith {
 
 	// Copy data from old slot
 	private _copySourceSlot = _beltData param [_sourceSlot, []];
-	if (_copyFrom isEqualTo []) exitWith {[COMPNAME, GVAR(debug), "ERROR", "Nothing to copy over!"] call EFUNC(common,debugNew);};
+	if (_copySourceSlot isEqualTo []) exitWith {[COMPNAME, GVAR(debug), "ERROR", "Nothing to copy over - why did this fnc execute??"] call EFUNC(common,debugNew);};
 
 	// If target slot is already occupied save that and directly paste it to other side
 	private _copyTargetSlot = _beltData param [_slotToUse, []];
@@ -68,7 +68,6 @@ if (_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2]) exitWith {
 
 	[COMPNAME, GVAR(debug), "INFO", format ["Swapped belSlot %1 to %2", _sourceSlot, _slotToUse]] call EFUNC(common,debugNew);
 };
-
 
 
 // Find free slot to use
@@ -97,31 +96,22 @@ if (_slotToUse < 0) exitWith {
 };
 
 // Find item's 3D model path
-private _config1 = configFile >> "CfgWeapons";
-private _config = _config1 >> _classname;
-
+private _config = configFile >> "CfgWeapons" >> _classname;
 private _modelPath = getText (_config >> "model");
 
-// If item is mine or magazine it will be in cfgMagazines
+// Figure out type of item
+private _itemType = _classname call BIS_fnc_itemType;
 
+// If item is mine or magazine it will be in cfgMagazines
 if (_modelPath isEqualTo "") then {
-	_config1 = configFile >> "CfgMagazines";
-	_config = _config1 >> _classname;
+	_config = configFile >> "CfgMagazines" >> _classname;
 	
 	_modelPath = getText (_config >> "model");
-//	_isKindOfMine = true;
 };
 
 // If we still dont have correct path for model we give up
 if (_modelPath isEqualTo "") exitWith {
 	if (GVAR(debug)) then {systemChat format ["[RAA_beltSlot] [ERROR] Model not found for %1", _classname];};
-	false
-};
-
-
-if (_exit) exitWith {
-	systemChat "Unsupported item.";
-	if (GVAR(debug)) then {[ADDON, "WARNING", format ["Unsupported item %1 classname %2", _itemType, _classname], true, false] call EFUNC(common,debug);};
 	false
 };
 
@@ -194,8 +184,8 @@ if !(_success) exitWith {
 private _object = createSimpleObject [_modelPath, getPosASL _unit];
 
 // Attach and orient physical object to character
-_success = [_unit, _slotToUse, _object, _kindOf] call FUNC(attachBeltItem);
-if !(_success) exitWith {false};
+private _kindOf = [_unit, _slotToUse, _object] call FUNC(attachBeltItem);
+if (_kindOf < 0) exitWith {false};
 
 // Potential fix for potential clipping problems
 [_object, false] remoteExec ["setPhysicsCollisionFlag", 0];

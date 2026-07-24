@@ -29,7 +29,7 @@ private _currentPath = _interactedObject getVariable [QGVAR(currentPath), "/"];
         // This param is a hard path
 		private _split = _x splitString "/\";
 		private _folderName = _split select -1;
-		private _path = _split deleteAt [-1];
+		private _path = (_split deleteAt [-1]);
 		_path insert [0, ""];
 		_path joinString "/";
         [_interactedObject, _folderName, _path] call FUNC(removeFolder);

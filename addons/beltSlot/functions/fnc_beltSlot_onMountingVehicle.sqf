@@ -47,7 +47,7 @@ private _object = objNull;
 
 			// If we dismounted from helo we need to re-attach our belt item(s)
 			if (_vehicle isKindOf "Helicopter") then {
-				[_unit, _forEachIndex, _object, _kindOf] call FUNC(attachBeltItem);
+				[_unit, _forEachIndex, _object] call FUNC(attachBeltItem);
 
 				[COMPNAME, GVAR(debug), "NOTE", format ["Detached %1", _object]] call EFUNC(common,debugNew);
 			} else {

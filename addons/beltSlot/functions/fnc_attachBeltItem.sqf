@@ -11,7 +11,7 @@
 * 2:	Belt object <OBJECT>
 * 3:	BeltItem's type <INT>
 *
-Returns: 	Success
+Returns: 	KindOf <INT> on success, -1 on failure
 *
 * Example:	
 *	[] call RAA_beltSlot_fnc_attachBeltItem
@@ -21,7 +21,7 @@ params [["_unit", ACE_player], ["_slotToUse", -1], ["_object", objNull], ["_kind
 
 if (_slotToUse < 0 || _object isEqualTo objNull) exitWith {
 	[COMPNAME, GVAR(debug), "WARNING", format ["Attaching item failed: invalid parameter! %1", _this]] call EFUNC(common,debugNew);
-	false
+	-1
 };
 
 if (_kindOf < 0) then {
@@ -31,7 +31,7 @@ if (_kindOf < 0) then {
 // Find out how we should orient this item based on its type
 private _kindOf = 0;	// 0: Generic item, 1: mine, 2: headgear, 3: magazine
 private _exit = false;
-private _itemType = _classname call BIS_fnc_itemType;
+private _itemType = typeOf _object call BIS_fnc_itemType;
 switch (_itemType select 0) do {
 	case ("Item"): {_kindOf = 0};
 	case ("Mine"): {_kindOf = 1};
@@ -46,9 +46,15 @@ switch (_itemType select 0) do {
 };
 
 if (_exit) exitWith {
-	[COMPNAME, GVAR(debug), "WARNING", "Attaching item FAILED!"] call EFUNC(common,debugNew);
+	systemChat "Unsupported item.";
+	
 	false
-}
+};
+if (_exit) exitWith {
+	systemChat "Unsupported item";
+	if (GVAR(debug)) then {[ADDON, "WARNING", format ["Type:%1 classname:%2", _itemType, typeOf _classname], true, false] call EFUNC(common,debug);};
+	-1
+};
 
 // Overrides for weirdly oriented stuff
 switch (typeOf _object) do {
@@ -56,7 +62,6 @@ switch (typeOf _object) do {
 };
 
 // Attach model to belt
-private _success = true;
 switch (_slotToUse) do {
 	case (0): {		// -- Left side
 		switch (_kindOf) do {
@@ -129,9 +134,9 @@ switch (_slotToUse) do {
 	default {
 		if (_slotToUse < 0) exitWith {
 			[COMPNAME, GVAR(debug), "WARNING", "Attaching item failed: invalid slot provided!"] call EFUNC(common,debugNew);
-			_success = false;
+			_kindOf = -1;
 		};
 	};
 };
 
-_success
+_kindOf
