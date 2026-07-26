@@ -31,10 +31,9 @@
 			private _image = _beltSlots param [_i, []] param [1, ""];
 			private _ammoCount = _beltSlots param [_i, []] param [7, -1];
 			private _text = _beltSlots param [_i, []] param [2, ""];
-			[COMPNAME, GVAR(debug), "INFO", format ["AmmoC: %1, params: %2", _ammoCount, param [_i, []]]] call EFUNC(common,debugNew);
+		//	[COMPNAME, GVAR(debug), "INFO", format ["AmmoC: %1, params: %2", _ammoCount, param [_i, []]]] call EFUNC(common,debugNew);
 			
 			lbClear _ctrl;
-			
 			
 			if (_image isNotEqualTo "") then {
 				private _index = _ctrl lbAdd _text;

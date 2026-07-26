@@ -79,37 +79,35 @@ if (!_externalContainer && {!([_unit, _classname, 1, _uniform, _vest, _backpack]
 
 // Check target slot is head or general inventory.
 private _oldHeadGear = "";
-if (_container isEqualTo 3) then {
 
-	// Check if item actually is headgear and, if it is, put hat on.
-	if (_itemType isEqualTo 605) then {
-
-		_oldHeadGear = headgear _unit;
-		_unit addHeadgear _className;
-	} else {
-		_exit = true;
-	};
-} else {
-	
-	// Add item to unit's inventory
-	switch (_container) do {
-		case (0): {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItemToUniform _classname}};
-		case (1): {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItemToVest _classname}};
-		case (2): {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItemToBackpack _classname}};
-		case (9): {	// External container
-			private _container = _unit getVariable [QGVAR(beltSlot_openedContainer), objNull];
-			if (isNull _container) then {
-				_container = createVehicle ["GroundWeaponHolder", position _unit, [], 0, "CAN_COLLIDE"];
-				_unit setVariable [QGVAR(beltSlot_openedContainer), _container];
-			};
-				if (_ammoCount >= 0) then {_container addMagazineAmmoCargo [_className, 1, _ammoCount];} else {
-					private _success = [_container, _classname, 1, true] call CBA_fnc_addItemCargo;				// TODO NOTE: CBA_fnc_addItemCargo is bad fnc! Replace with something better if possible!
-					if (GVAR(debug)) then {systemChat format ["[RAA_beltSlot] Added %1 to %2. Success: %3", _classname, _container, _success];};
-				};
+// Add item to unit's inventory
+switch (_container) do {
+	case (0): {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItemToUniform _classname}};
+	case (1): {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItemToVest _classname}};
+	case (2): {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItemToBackpack _classname}};
+	case (3): {	// Headgear
+		// Check if item actually is headgear and, if it is, put hat on.
+		if (_itemType isEqualTo 605) then {
+			_oldHeadGear = headgear _unit;
+			_unit addHeadgear _className;
+		} else {
+			_exit = true;
 		};
-		default {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItem _classname}};
 	};
+	case (9): {	// External container
+		private _container = _unit getVariable [QGVAR(beltSlot_openedContainer), objNull];
+		if (isNull _container) then {
+			_container = createVehicle ["GroundWeaponHolder", position _unit, [], 0, "CAN_COLLIDE"];
+			_unit setVariable [QGVAR(beltSlot_openedContainer), _container];
+		};
+			if (_ammoCount >= 0) then {_container addMagazineAmmoCargo [_className, 1, _ammoCount];} else {
+				private _success = [_container, _classname, 1, true] call CBA_fnc_addItemCargo;				// TODO NOTE: CBA_fnc_addItemCargo is bad fnc! Replace with something better if possible!
+				if (GVAR(debug)) then {systemChat format ["[RAA_beltSlot] Added %1 to %2. Success: %3", _classname, _container, _success];};
+			};
+	};
+	default {if (_ammoCount >= 0) then {_unit addMagazine [_classname, _ammoCount]} else {_unit addItem _classname}};
 };
+
 
 if (_exit) exitWith {false};
 

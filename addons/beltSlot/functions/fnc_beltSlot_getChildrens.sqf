@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "../defines.hpp"
 /* File: fnc_beltSlot_getChildrens.sqf
  * Author(s): riksuFIN
  * Description: Get children actions for ACE action menu
@@ -24,10 +25,7 @@ private _actions = [];
 private _cfgWeaponsBase = configFile >> "CfgWeapons";
 private _cfgMagazinesBase = configFile >> "CfgMagazines";
 private _items = +(_unit call ace_common_fnc_uniqueItems);
-//_items append magazines _unit;
-if (GVAR(enabled_headgearAction)) then {_items pushBackUnique headgear _unit};
-//_items append magazines _unit;
-if (enabled_headgearAction) then {_items pushBackUnique headgear _unit};
+//if (GVAR(enabled_headgearAction)) then {_items pushBackUnique headgear _unit};	// DISABLED in v2.02 since its bugged. TODO: FIX !!!
 
 {
 	// Handle general items
@@ -45,8 +43,14 @@ if (enabled_headgearAction) then {_items pushBackUnique headgear _unit};
 		
 		private _displayName = getText (_config >> "displayName");
 		private _picture = getText (_config >> "picture");
-		
-		private _action = [_x, _displayName, _picture, {["", _player, (_this select 2)] call FUNC(beltSlot_doMoveToBelt)}, {true}, {}, _x] call ace_interact_menu_fnc_createAction;
+
+		// Handle specific slots
+		private _source = nil;
+		switch (_x) do {
+			case (_x isEqualTo headgear _unit): {_source = IDC_SLOT_HEADGEAR};
+		};
+
+		private _action = [_x, _displayName, _picture, {[nil, _player, (_this select 2 select 0), false, -1, (_this select 2 select 1)] call FUNC(beltSlot_doMoveToBelt)}, {true}, {}, [_x, _source]] call ace_interact_menu_fnc_createAction;
 		_actions pushBack [_action, [], _unit];
 		
 	};

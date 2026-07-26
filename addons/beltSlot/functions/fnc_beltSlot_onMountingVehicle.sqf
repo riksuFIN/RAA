@@ -49,7 +49,7 @@ private _object = objNull;
 			if (_vehicle isKindOf "Helicopter") then {
 				[_unit, _forEachIndex, _object] call FUNC(attachBeltItem);
 
-				[COMPNAME, GVAR(debug), "NOTE", format ["Detached %1", _object]] call EFUNC(common,debugNew);
+				[COMPNAME, GVAR(debug), "NOTE", format ["Re-attached %1", _object]] call EFUNC(common,debugNew);
 			} else {
 				[COMPNAME, GVAR(debug), "NOTE", format ["Unhidd %1", _object]] call EFUNC(common,debugNew);
 			};

@@ -32,7 +32,10 @@ private _beltData = _unit getVariable [QGVAR(data), []];
 
 // Support for special source slots
 switch (_source) do {
-	case (6240): {_classname = headgear _unit;};	// headgear
+	case (IDC_SLOT_HEADGEAR): {_classname = headgear _unit;};	// headgear
+	case (IDC_SLOT_GOGGLES): {_classname = goggles _unit;};		// Goggles
+	case (IDC_SLOT_HMD): {_classname = hmd _unit;};			// NGV
+	case (IDC_SLOT_BINOCULAR): {_classname = binocular _unit;};	// Binoculars
 	case (IDC_RAA_BELTSLOT_SLOT1): {_classname = _beltData param [0, []] param [0, ""]; _ammoCount = _beltData param [0, []] param [7, ""]};
 	case (IDC_RAA_BELTSLOT_SLOT2): {_classname = _beltData param [1, []] param [0, ""]; _ammoCount = _beltData param [1, []] param [7, ""]};
 };
@@ -48,11 +51,16 @@ if (isNull _unit || _className isEqualTo "") exitWith {
 // Special handling for swapping beltslots
 private _success = false;
 if (_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2]) exitWith {
-	private _sourceSlot = [0,1] select (_source isEqualTo IDC_RAA_BELTSLOT_SLOT1);
+	private _sourceSlot = [1,0] select (_source isEqualTo IDC_RAA_BELTSLOT_SLOT1);
+	if (_sourceSlot isEqualTo _slotToUse) exitWith {
+		[COMPNAME, GVAR(debug), "INFO", "Tried to move from slot to same slot"] call EFUNC(common,debugNew);
+	};
 
 	// Copy data from old slot
 	private _copySourceSlot = _beltData param [_sourceSlot, []];
 	if (_copySourceSlot isEqualTo []) exitWith {[COMPNAME, GVAR(debug), "ERROR", "Nothing to copy over - why did this fnc execute??"] call EFUNC(common,debugNew);};
+
+	_beltData set [_sourceSlot, nil];
 
 	// If target slot is already occupied save that and directly paste it to other side
 	private _copyTargetSlot = _beltData param [_slotToUse, []];
@@ -66,6 +74,12 @@ if (_source in [IDC_RAA_BELTSLOT_SLOT1,IDC_RAA_BELTSLOT_SLOT2]) exitWith {
 	_beltData set [_slotToUse, _copySourceSlot];
 	[_unit, _slotToUse, _copySourceSlot param [3, objNull]] call FUNC(attachBeltItem);
 
+	// Refresh slots in inventory screen
+	if !(isNull findDisplay 602) then {
+		call FUNC(beltSlot_onInventoryOpened);
+	};
+
+	_unit setVariable [QGVAR(data), _beltData, true];
 	[COMPNAME, GVAR(debug), "INFO", format ["Swapped belSlot %1 to %2", _sourceSlot, _slotToUse]] call EFUNC(common,debugNew);
 };
 
@@ -131,22 +145,22 @@ if (_ignoreInventory) then {
 			_container = _unit getVariable [QGVAR(beltSlot_openedContainer), objNull];
 			if (isNull _container) exitWith {[COMPNAME, GVAR(debug), "WARNING", format ["Failed to find external inventory to remove item from! %1", _container]] call EFUNC(common,debugNew); false};
 		};
-		case (6240): {	// Headgear
+		case (IDC_SLOT_HEADGEAR): {	// Headgear
 			removeHeadgear _unit;
 			_success = true;
 			_exit = true;
 		};
-		case (6238): {	// Binoculars
+		case (IDC_SLOT_BINOCULAR): {	// Binoculars
 			_unit removeWeapon (binocular _unit);
 			_success = true;
 			_exit = true;
 		};
-		case (6216): {	// Goggles
+		case (IDC_SLOT_GOGGLES): {	// Goggles
 			_unit unlinkItem (goggles _unit);
 			_success = true;
 			_exit = true;
 		};
-		case (6217): {	// NVG
+		case (IDC_SLOT_HMD): {	// NVG
 			_unit unlinkItem (hmd _unit);
 			_success = true;
 			_exit = true;
@@ -184,8 +198,11 @@ if !(_success) exitWith {
 private _object = createSimpleObject [_modelPath, getPosASL _unit];
 
 // Attach and orient physical object to character
-private _kindOf = [_unit, _slotToUse, _object] call FUNC(attachBeltItem);
-if (_kindOf < 0) exitWith {false};
+private _kindOf = [_unit, _slotToUse, _object, _classname] call FUNC(attachBeltItem);
+if (_kindOf < 0) exitWith {
+	deleteVehicle _object;
+	false
+};
 
 // Potential fix for potential clipping problems
 [_object, false] remoteExec ["setPhysicsCollisionFlag", 0];
@@ -230,10 +247,15 @@ _unit setVariable [QGVAR(data), _beltData, true];
 // Add mass of item to player as virtual mass
 [_unit, _unit, _weight] call ace_movement_fnc_addLoadToUnitContainer;
 
-// If inventory screen is open refresh belt images
+// Refresh slots in inventory screen.
 if !(isNull findDisplay 602) then {
-	call FUNC(beltSlot_onInventoryOpened);
+	_unit action ["Gear", _unit getVariable [QGVAR(beltSlot_openedContainer), objNull]];	// Crude fix for inventory display getting confused after dragging item to slot
+
+	[{call FUNC(beltSlot_onInventoryOpened);}, _unit, 0.5] call CBA_fnc_waitAndExecute;
+	//_unit action ["Gear", _unit getVariable [QGVAR(beltSlot_openedContainer), objNull]];
 };
+// If inventory screen is open refresh belt images
+//if !(isNull findDisplay 602) then {call FUNC(beltSlot_onInventoryOpened);};
 
 
 true

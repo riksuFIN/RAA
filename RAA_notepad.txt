@@ -2,6 +2,7 @@
 - ACE Arsenal Overview & Item Description will not hide with rest of interface
 - BeltSlot: After client disconnects from MP server bottles their bottles are removed, even if their body remains to be controlled by AI.
 - BeltSlot: After drag-and-dropping belt items in inventory screen it get stuck in red/white colors. Closing and re-opening inventory fixes this.
+- BeltSlot: Zeus Remotecontrolled unit cannot move items to belt from external inventory
 
 ================ TO DO ===================================
 - Rewrite fieldRation_Warnings
@@ -21,14 +22,10 @@ v2.0.2
 	- TFAR radios are also counted now as radios (theoretically, untested)
 - [beltSlot] Removed rogue systemChat debug message left behind from testing
 - [beltSlot] Added support for moving items between belt slots
+- [beltSlot] Fixed generic items orientation on belt
+- [beltSLot] Fixed AI helos ascending vertically forever if player with items to belt boards as passenger
+- [beltSlot] Added support for binoculars
 
-TODO: Add fix for helos ascending vertically when item is on belt. Delete belt-item when boarding a helo
-TODO: Add support for moving item from belt to other belt side
-TODO: "pulling a binocular directly from the crate to belt will pop error "unable to delete", but pulling from inventory to belt works ok"
-TODO: Check mine detector, tool kit and medkit orientation
-
-MIHIN JÄI:
-- Moving belt to belt: TEST REPLACING ITEM
 
 
 

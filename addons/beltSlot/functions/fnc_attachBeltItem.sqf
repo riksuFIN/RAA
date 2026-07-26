@@ -17,7 +17,7 @@ Returns: 	KindOf <INT> on success, -1 on failure
 *	[] call RAA_beltSlot_fnc_attachBeltItem
 */
 
-params [["_unit", ACE_player], ["_slotToUse", -1], ["_object", objNull], ["_kindOf", -1]];
+params [["_unit", ACE_player], ["_slotToUse", -1], ["_object", objNull], ["_classname", ""], ["_kindOf", -1]];
 
 if (_slotToUse < 0 || _object isEqualTo objNull) exitWith {
 	[COMPNAME, GVAR(debug), "WARNING", format ["Attaching item failed: invalid parameter! %1", _this]] call EFUNC(common,debugNew);
@@ -28,12 +28,27 @@ if (_kindOf < 0) then {
 	_kindOf = (_unit getVariable [QGVAR(data), []] param [_slotToUse, []] param [8, -1]);
 };
 
+if (_classname isEqualTo "") then {
+	_classname = (_unit getVariable [QGVAR(data), []] param [_slotToUse, []] param [0, ""]);
+};
+
+if (_classname isEqualTo "") exitWith {	[COMPNAME, GVAR(debug), "WARNING", format ["Invalid classname:%1", _this]] call EFUNC(common,debugNew);
+	-1
+};
+
+
+
 // Find out how we should orient this item based on its type
-private _kindOf = 0;	// 0: Generic item, 1: mine, 2: headgear, 3: magazine
 private _exit = false;
-private _itemType = typeOf _object call BIS_fnc_itemType;
+private _itemType = (_classname call BIS_fnc_itemType);
 switch (_itemType select 0) do {
-	case ("Item"): {_kindOf = 0};
+	case ("Item"): {
+		switch (_itemType select 1) do {
+			case ("Binocular"): {_kindOf = 1};
+			case ("NVGoggles"): {_kindOf = 2};
+			default {_kindOf = 0};
+		};
+	};
 	case ("Mine"): {_kindOf = 1};
 	case ("Equipment"): {
 		_kindOf = 2;
@@ -45,19 +60,15 @@ switch (_itemType select 0) do {
 	default {_exit = true};
 };
 
-if (_exit) exitWith {
-	systemChat "Unsupported item.";
-	
-	false
-};
+
 if (_exit) exitWith {
 	systemChat "Unsupported item";
-	if (GVAR(debug)) then {[ADDON, "WARNING", format ["Type:%1 classname:%2", _itemType, typeOf _classname], true, false] call EFUNC(common,debug);};
+	if (GVAR(debug)) then {[ADDON, "WARNING", format ["Type:%1 classname:%2", _itemType, _classname], true, false] call EFUNC(common,debug);};
 	-1
 };
 
 // Overrides for weirdly oriented stuff
-switch (typeOf _object) do {
+switch (_classname) do {
 	case ("SatchelCharge_Remote_Mag"): {_kindOf = 0};
 };
 
@@ -67,7 +78,7 @@ switch (_slotToUse) do {
 		switch (_kindOf) do {
 			case (0): {	// Generic item
 				_object attachTo [_unit, [-0.2, 0, -0.05], "Pelvis", true]; 
-				_object setVectorDirAndUp [[1, 0, 0], [0, 0, 1]];
+				_object setVectorDirAndUp [[-1, 0, 0], [0, 0, 1]];
 			};
 			case (1): {	// Mine
 				_object attachTo [_unit, [-0.2, 0, -0.05], "Pelvis", true]; 
@@ -86,7 +97,7 @@ switch (_slotToUse) do {
 				private _selected = _boundingBox find selectMin _boundingBox;
 				if (_selected <= 2) then {
 
-				private _turn = [90, 0, 0] select _selected;
+				private _turn = [-90, 0, 0] select _selected;
 				_object setDir _turn;
 				[COMPNAME, GVAR(debug), "NOTE", format ["Rotated belt object by %1 degress", _turn]] call EFUNC(common,debugNew);
 				} else {
@@ -130,6 +141,18 @@ switch (_slotToUse) do {
 				};
 			};
 		};
+
+/*
+		private _boundingBox = (0 boundingBoxReal obj1);
+		private _x = (_boundingBox select 1 select 0) - abs (_boundingBox select 0 select 0);
+		private _y = (_boundingBox select 1 select 1) - abs (_boundingBox select 0 select 1);
+		private _z = (_boundingBox select 1 select 2) - abs (_boundingBox select 0 select 2);
+
+		switch (selectMax [_x,_y,_z]) do {
+		case (_x): {obj1 setVectorDirAndUp [[1, 0, -15], [0, 0, 1]]};
+
+		};
+*/
 	};
 	default {
 		if (_slotToUse < 0) exitWith {
@@ -138,5 +161,9 @@ switch (_slotToUse) do {
 		};
 	};
 };
+
+
+
+
 
 _kindOf
